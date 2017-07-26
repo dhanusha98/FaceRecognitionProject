@@ -22,7 +22,7 @@ function varargout = NormalUserMainMenu(varargin)
 
 % Edit the above text to modify the response to help NormalUserMainMenu
 
-% Last Modified by GUIDE v2.5 26-Jul-2017 17:47:14
+% Last Modified by GUIDE v2.5 26-Jul-2017 22:41:14
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -90,5 +90,12 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % --- Executes on button press in pushbutton5.
 function pushbutton5_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton6.
+function pushbutton6_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton6 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
