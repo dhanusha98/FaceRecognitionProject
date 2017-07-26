@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/AccommodationWebService/WebServicefuntions?wsdl" uri="src/conf/xml-resources/web-service-references/WebServicefuntions/wsdl/localhost_8080/AccommodationWebService/WebServicefuntions.wsdl"/>
+    <system systemId="http://localhost:8080/AccommodationWebService/WebServicefuntions?xsd=1" uri="src/conf/xml-resources/web-service-references/WebServicefuntions/wsdl/localhost_8080/AccommodationWebService/WebServicefuntions.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/AccommodationWebService/AWebService?WSDL" uri="src/conf/xml-resources/web-service-references/AWebService/wsdl/localhost_8080/AccommodationWebService/AWebService.wsdl"/>
+    <system systemId="http://localhost:8080/AccommodationWebService/AWebService?wsdl" uri="src/conf/xml-resources/web-service-references/AWebService/wsdl/localhost_8080/AccommodationWebService/AWebService.wsdl"/>
+    <system systemId="http://localhost:8080/AccommodationWebService/AWebService?xsd=1" uri="src/conf/xml-resources/web-service-references/AWebService/wsdl/localhost_8080/AccommodationWebService/AWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/AccommodationBusinessLogic/BusinessLogicService?wsdl" uri="src/conf/xml-resources/web-service-references/BusinessLogicService/wsdl/localhost_8080/AccommodationBusinessLogic/BusinessLogicService.wsdl"/>
+    <system systemId="http://localhost:8080/AccommodationBusinessLogic/BusinessLogicService?xsd=1" uri="src/conf/xml-resources/web-service-references/BusinessLogicService/wsdl/localhost_8080/AccommodationBusinessLogic/BusinessLogicService.xsd_1.xsd"/>
+</catalog>
