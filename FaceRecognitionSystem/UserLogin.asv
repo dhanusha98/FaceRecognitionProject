@@ -135,13 +135,13 @@ psw=get(handles.txtpassword, 'string'); %Password TextBox value
    
 %end
 
-if isequal(usn, 'Piumal') & isequal(psw,'123') 
-    
-    NormalUserMainMenu
 
-else 
-    msgbox('Invalid User Authentications');
+if (usn&&psw)
+        msgbox('Correct');
+else
+    msgbox('Incorrect');
 end
+
 % --- Executes on button press in resetpushbutton.
 function resetpushbutton_Callback(hObject, eventdata, handles) 
 % hObject    handle to resetpushbutton (see GCBO)
