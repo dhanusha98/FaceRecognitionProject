@@ -1,0 +1,10 @@
+
+
+NoseDetector=vision.CascadeObjectDetector();
+
+img=imread('2-08.jpg');
+imshow(img);
+
+bbox=step(NoseDetector,img);
+
+o

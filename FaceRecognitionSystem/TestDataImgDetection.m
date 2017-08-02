@@ -54,7 +54,13 @@ bbox=step(facedetect5, sideimg);
 outbox=insertObjectAnnotation(sideimg, 'rectangle', bbox, 'detection');
 imshow(outbox);
 
-iofn=imread('io-fn.jpg');
-iofn=imresize(iofn, 0.3);
-imshow(iofn)
+%iofn=imread('io-fn.jpg');
+%iofn=imresize(iofn, 0.3);
+%imshow(iofn)
+
+
+
+
+
+
 
