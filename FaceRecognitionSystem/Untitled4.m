@@ -28,15 +28,12 @@
 
 statsMatrix=[];
 
-
-
    LeftEyeDetector=vision.CascadeObjectDetector('LeftEye');
    LeftEyeDetector.MergeThreshold=40;
-
-   images ='E:\FaceRecognitionProject\FaceRecognitionSystem\TrainingSet\1';
+   
+   images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\10';
    jpgfiles=dir(fullfile(images,'\*.jpg*'));
    n=numel(jpgfiles);
-   idx=randi(n);
    
    for i=1:n
    im=jpgfiles(i).name;
@@ -63,7 +60,6 @@ statsMatrix=[];
    Distance_LeftEye_Nose=sqrt((xCentroid_Nose-xCentroid_LeftEye)^2+(yCentroid_Nose-yCentroid_LeftEye)^2);
   
         statsMatrix =[statsMatrix ; Distance_LeftEye_Nose];
-
 
    end
 

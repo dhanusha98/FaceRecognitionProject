@@ -12,9 +12,9 @@ statsMatrix=[];
    statsMatrix=[];
 
    LeftEyeDetector=vision.CascadeObjectDetector('LeftEye');
-   LeftEyeDetector.MergeThreshold=40;
+   %LeftEyeDetector.MergeThreshold=40;
    
-   images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\20';
+   images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\17';
    jpgfiles=dir(fullfile(images,'\*.jpg*'));
    n=numel(jpgfiles);
    
@@ -27,7 +27,7 @@ statsMatrix=[];
    ILeftEye=insertObjectAnnotation(ImgLeftEyeResize, 'rectangle', bboxLeftEye, 'LeftEye');
 
    FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
-   ImgFace=imread('28-08.jpg');
+   ImgFace=imread(fullfile(images,im));
    ImgFaceResize=imresize(ImgFace, [320,320]);
    bboxFace=step(FaceDetector, ImgFaceResize);
    IFaces=insertObjectAnnotation(ImgFaceResize, 'rectangle', bboxFace, 'Face');
@@ -82,8 +82,8 @@ statsMatrix=[];
      statsMatrix_LeftEyeWidth=[statsMatrix_LeftEyeWidth; Width_LeftEye];
      statsMatrix_RightEyeWidth=[statsMatrix_RightEyeWidth;  Width_RightEye];
      statsMatrix_Nose_To_Mouth_Distance=[statsMatrix_Nose_To_Mouth_Distance; Distance_Nose_Mouth];
-     statsMatrix_LeftEye_Mouth=[statsMatrix_LeftEye_Mouth; ];
-     statsMatrix_RightEye_Mouth=[];
+     statsMatrix_LeftEye_Mouth=[statsMatrix_LeftEye_Mouth; Distance_LeftEye_Mouth];
+     statsMatrix_RightEye_Mouth=[statsMatrix_RightEye_Mouth; Distance_RightEye_Mouth];
      
    end
 
