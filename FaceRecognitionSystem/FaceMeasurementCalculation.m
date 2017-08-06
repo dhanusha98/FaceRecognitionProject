@@ -16,11 +16,11 @@
    
    NoseDetector=vision.CascadeObjectDetector('Nose');
    NoseDetector.MergeThreshold=15;
-   ImgNose=imread('28-08.jpg');
+   ImgNose=imread('2-12.jpg');
    ImgNoseResize=imresize(ImgNose, [320,320]);
    bboxNose=step(NoseDetector, ImgNoseResize);
    INose=insertObjectAnnotation(ImgNoseResize, 'rectangle', bboxNose, 'Nose');
-   
+   imshow(INose);
    
    LeftEyeDetector=vision.CascadeObjectDetector('LeftEye');
    LeftEyeDetector.MergeThreshold=40;
@@ -37,7 +37,6 @@
    ImgRightEyeResize=imresize(ImgRightEye, [320,320]);
    bboxRightEye=step(RightEyeDetector, ImgRightEyeResize);
    IRightEye=insertObjectAnnotation(ImgRightEyeResize, 'rectangle', bboxRightEye, 'RightEye');
-   imshow(IRightEye);
    
    %%
    
