@@ -1,6 +1,4 @@
-
-
-  statsMatrix_FaceHeight=[];
+ statsMatrix_FaceHeight=[];
    statsMatrix_LeftEyeWidth=[];
    statsMatrix_RightEyeWidth=[];
    statsMatrix_LeftEye_To_Nose_Distance=[];
@@ -13,7 +11,7 @@
    LeftEyeDetector=vision.CascadeObjectDetector('LeftEye');
    %LeftEyeDetector.MergeThreshold=40;
    
-   images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\400';
+   images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\53';
    jpgfiles=dir(fullfile(images,'\*.jpg*'));
    n=numel(jpgfiles);
    
@@ -83,11 +81,7 @@
      statsMatrix_Nose_To_Mouth_Distance=[statsMatrix_Nose_To_Mouth_Distance; Distance_Nose_Mouth];
      statsMatrix_LeftEye_Mouth=[statsMatrix_LeftEye_Mouth; Distance_LeftEye_Mouth];
      statsMatrix_RightEye_Mouth=[statsMatrix_RightEye_Mouth; Distance_RightEye_Mouth];
+     statsMatrix=[statsMatrix_LeftEye_To_Nose_Distance, statsMatrix_RightEye_To_Nose_Distance, statsMatrix_FaceHeight];
      
-     %Concatena All the Above Matrices to Form Final Result Matrix
-        statsMatrix=[statsMatrix_FaceHeight, statsMatrix_LeftEye_Mouth, statsMatrix_LeftEye_To_Nose_Distance,...
-                     statsMatrix_LeftEyeWidth, statsMatrix_Nose_To_Mouth_Distance, statsMatrix_RightEye_Mouth, ...
-                     statsMatrix_RightEye_To_Nose_Distance,statsMatrix_RightEyeWidth ];
-
    end
 
