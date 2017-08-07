@@ -14,7 +14,7 @@ statsMatrix=[];
    LeftEyeDetector=vision.CascadeObjectDetector('LeftEye');
    %LeftEyeDetector.MergeThreshold=40;
    
-   images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\28';
+   images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\40';
    jpgfiles=dir(fullfile(images,'\*.jpg*'));
    n=numel(jpgfiles);
    
@@ -33,7 +33,7 @@ statsMatrix=[];
    IFaces=insertObjectAnnotation(ImgFaceResize, 'rectangle', bboxFace, 'Face');
    
    NoseDetector=vision.CascadeObjectDetector('Nose');
-   %NoseDetector.MergeThreshold=15;
+   %NoseDetector.MergeThreshold=25;
    ImgNose=imread(fullfile(images,im));
    ImgNoseResize=imresize(ImgNose, [320,320]);
    bboxNose=step(NoseDetector, ImgNoseResize);
