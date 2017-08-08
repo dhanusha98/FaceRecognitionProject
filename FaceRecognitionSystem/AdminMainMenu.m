@@ -54,6 +54,14 @@ function AdminMainMenu_OpeningFcn(hObject, eventdata, handles, varargin)
 
 % Choose default command line output for AdminMainMenu
 handles.output = hObject;
+axes(handles.axes1)
+imshow('facewallpaper.jpg');
+
+axes(handles.axes2)
+imshow('ANNTrain.jpeg');
+
+axes(handles.axes3)
+imshow('Help-Icon.jpg');
 
 % Update handles structure
 guidata(hObject, handles);

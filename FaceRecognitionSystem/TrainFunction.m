@@ -13,7 +13,7 @@
    LeftEyeDetector=vision.CascadeObjectDetector('LeftEye');
    %LeftEyeDetector.MergeThreshold=40;
    
-   images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\400';
+   images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\500';
    jpgfiles=dir(fullfile(images,'\*.jpg*'));
    n=numel(jpgfiles);
    

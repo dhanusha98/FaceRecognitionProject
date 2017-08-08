@@ -25,7 +25,7 @@ function varargout = FaceRecognitionInput(varargin)
 
 % Edit the above text to modify the response to help FaceRecognitionInput
 
-% Last Modified by GUIDE v2.5 26-Jul-2017 20:16:52
+% Last Modified by GUIDE v2.5 09-Aug-2017 00:17:27
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -58,6 +58,7 @@ function FaceRecognitionInput_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecognitionInput
 handles.output = hObject;
 
+
 % Update handles structure
 guidata(hObject, handles);
 
@@ -79,12 +80,26 @@ varargout{1} = handles.output;
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
+% eventdata  reserved - to be defined in a future versioInputDataSetn of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+[filename pathname]=uigetfile({'*.*', 'All files'});
+img=imread([pathname filename]);
+axes(handles.axes2)
+imshow(img);
 
+setappdata(0, 'imgvalue', img);
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton3.
+function pushbutton3_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+FaceRecogOutput

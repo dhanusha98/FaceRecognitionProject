@@ -22,7 +22,7 @@ function varargout = FaceRecogOutput(varargin)
 
 % Edit the above text to modify the response to help FaceRecogOutput
 
-% Last Modified by GUIDE v2.5 09-Aug-2017 01:03:52
+% Last Modified by GUIDE v2.5 09-Aug-2017 00:52:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -55,6 +55,56 @@ function FaceRecogOutput_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecogOutput
 handles.output = hObject;
 
+FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
+   ImgFace=imread(fullfile(images,im));
+   ImgFaceResize=imresize(ImgFace, [320,320]);
+   bboxFace=step(FaceDetector, ImgFaceResize);
+   IFaces=insertObjectAnnotation(ImgFaceResize, 'rectangle', bboxFace, 'Face');
+   
+   NoseDetector=vision.CascadeObjectDetector('Nose');
+   %NoseDetector.MergeThreshold=25;
+   ImgNose=imread(fullfile(images,im));
+   ImgNoseResize=imresize(ImgNose, [320,320]);
+   bboxNose=step(NoseDetector, ImgNoseResize);
+   INose=insertObjectAnnotation(ImgNoseResize, 'rectangle', bboxNose, 'Nose');
+   
+   MouthDetector=vision.CascadeObjectDetector('Mouth');
+   ImgMouth=imread(fullfile(images,im));
+   ImgMouthResize=imresize(ImgMouth, [320,320]);
+   MouthDetector.MergeThreshold=40;
+   bboxMouth=step(MouthDetector, ImgMouthResize);
+   IMouth=insertObjectAnnotation(ImgMouthResize, 'rectangle', bboxMouth,'Mouth');
+   
+   
+   RightEyeDetector=vision.CascadeObjectDetector('RightEye');
+   RightEyeDetector.MergeThreshold=20;
+   RightEyeDetector.MergeThreshold=5;
+   ImgRightEye=imread(fullfile(images,im));
+   ImgRightEyeResize=imresize(ImgRightEye, [320,320]);
+   bboxRightEye=step(RightEyeDetector, ImgRightEyeResize);
+   IRightEye=insertObjectAnnotation(ImgRightEyeResize, 'rectangle', bboxRightEye, 'RightEye');
+   
+   xCentroid_LeftEye=bboxLeftEye(1) + bboxLeftEye(3)/2;
+   yCentroid_LeftEye=bboxLeftEye(2) + bboxLeftEye(4)/2;
+   
+   xCentroid_Nose=bboxNose(1)+ bboxNose(3)/2;
+   yCentroid_Nose=bboxNose(2)+bboxNose(4)/2;
+   
+   xCentroid_RightEye=bboxLeftEye(1) + bboxLeftEye(3)/2;
+   yCentroid_RightEye=bboxLeftEye(2) + bboxLeftEye(4)/2;
+   
+   xCentroid_Mouth=bboxMouth(1)+bboxMouth(3)/2;
+   yCentroid_Mouth=bboxMouth(2)+bboxMouth(4)/2;
+   
+   FaceHeight=bboxFace(4);
+   Width_LeftEye=bboxLeftEye(3);
+   Width_RightEye=bboxRightEye(3);
+   Distance_LeftEye_Nose=sqrt((xCentroid_Nose-xCentroid_LeftEye)^2+(yCentroid_Nose-yCentroid_LeftEye)^2);
+   Distance_RightEye_Nose=sqrt((xCentroid_Nose-xCentroid_RightEye)^2+(yCentroid_Nose-yCentroid_RightEye)^2);
+   Distance_Nose_Mouth=sqrt((xCentroid_Nose-xCentroid_Mouth)^2+(yCentroid_Nose-yCentroid_Mouth)^2);
+   Distance_LeftEye_Mouth=sqrt((xCentroid_LeftEye-xCentroid_Mouth)^2+(yCentroid_LeftEye-yCentroid_Mouth)^2);
+   Distance_RightEye_Mouth=sqrt((xCentroid_LeftEye-xCentroid_Mouth)^2+(yCentroid_LeftEye-yCentroid_Mouth)^2);
+  
 
    
 
@@ -616,17 +666,3 @@ FaceRecognitionInput
 %e=getappdata(0,'imgvalue');
 %axes(handles.axes1);
 %imshow(e);
-
-
-% --- Executes on button press in pushbutton2.
-function pushbutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-img=getappdata(0,'imgvalue');
-
-axes(handles.axes1)
-imshow(img);
-
-   
