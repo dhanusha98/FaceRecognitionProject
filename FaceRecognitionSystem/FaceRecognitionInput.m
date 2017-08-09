@@ -59,6 +59,7 @@ function FaceRecognitionInput_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 
 
+
 % Update handles structure
 guidata(hObject, handles);
 
@@ -83,12 +84,15 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future versioInputDataSetn of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-[filename pathname]=uigetfile({'*.*', 'All files'});
-img=imread([pathname filename]);
+[filename,pathname]=uigetfile({'*.*', 'All files'});
+img=imread([pathname,filename]);
 axes(handles.axes2)
 imshow(img);
 
-setappdata(0, 'imgvalue', img);
+setappdata(0, 'pathname', pathname);
+setappdata(0, 'filename', filename);
+
+
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton2 (see GCBO)

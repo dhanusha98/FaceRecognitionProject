@@ -55,8 +55,16 @@ function FaceRecogOutput_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecogOutput
 handles.output = hObject;
 
-FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
-   ImgFace=imread('2-12.jpg');
+e=getappdata(0,'imgvalue');
+axes(handles.axes1);
+image(e);
+
+setappdata(0, 'image', a);
+
+img=getappdata(0, 'image');
+
+   FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
+   ImgFace=imread(img);
    ImgFaceResize=imresize(ImgFace, [320,320]);
    bboxFace=step(FaceDetector, ImgFaceResize);
    IFaces=insertObjectAnnotation(ImgFaceResize, 'rectangle', bboxFace, 'Face');
@@ -119,20 +127,11 @@ FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
    Distance_LeftEye_Mouth=sqrt((xCentroid_LeftEye-xCentroid_Mouth)^2+(yCentroid_LeftEye-yCentroid_Mouth)^2);
    Distance_RightEye_Mouth=sqrt((xCentroid_LeftEye-xCentroid_Mouth)^2+(yCentroid_LeftEye-yCentroid_Mouth)^2);
    
-   %set(handles.editPersonID, 'String', num2str(FaceHeight));
-   %set(handles.editPersonName, 'String', num2str(Width_LeftEye));
-   %set(handles.editDOB, 'String', num2str(Width_RightEye));
-   %set(handles.editSex, 'String', num2str(Distance_LeftEye_Nose));
-   %set(handles.editHeight, 'String', num2str(Distance_RightEye_Nose));
-   %set(handles.editWeight, 'String', num2str(Distance_Nose_Mouth));
-   %set(handles.editEyeColor, 'String', num2str(Distance_LeftEye_Mouth));
-   %set(handles.editHair, 'String', num2str(Distance_RightEye_Mouth));
    
    nnetwork2=evalin('base','network3');
    
    outputresult=nnetwork2([FaceHeight; Distance_LeftEye_Mouth; Distance_LeftEye_Nose; Width_LeftEye; Distance_Nose_Mouth; Distance_RightEye_Mouth; Distance_RightEye_Nose; Width_RightEye]);
-   %set(handles.editPersonID, 'String', num2str(outputresult));
-   assignin ();
+   set(handles.editPersonID, 'String', num2str(outputresult));
    
 % Update handles structure
 guidata(hObject, handles);
@@ -689,9 +688,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 
 FaceRecognitionInput
 
-%e=getappdata(0,'imgvalue');
-%axes(handles.axes1);
-%imshow(e);
+
 
 
 % --- Executes on button press in pushbutton2.

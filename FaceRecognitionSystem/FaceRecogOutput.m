@@ -55,26 +55,33 @@ function FaceRecogOutput_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecogOutput
 handles.output = hObject;
 
+%e=getappdata(0,'imgvalue');
+%axes(handles.axes1);
+%imshow(e);
 
-FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
-   ImgFace=imread('2-12.jpg');
+pathname=getappdata(0, 'pathname');
+filename=getappdata(0, 'filename');
+
+
+   FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
+   ImgFace=imread([pathname, filename]);
    ImgFaceResize=imresize(ImgFace, [320,320]);
    bboxFace=step(FaceDetector, ImgFaceResize);
    IFaces=insertObjectAnnotation(ImgFaceResize, 'rectangle', bboxFace, 'Face');
-   axes(handles.axes1)
-   imshow(IFaces);
+   %axes(handles.axes1)
+   %imshow(IFaces);
    
 
    LeftEyeDetector=vision.CascadeObjectDetector('LeftEye');
    %LeftEyeDetector.MergeThreshold=40;
-   ImgLeftEye=imread('2-12.jpg');
+   ImgLeftEye=imread([pathname, filename]);
    ImgLeftEyeResize=imresize(ImgLeftEye, [320,320]);
    bboxLeftEye=step(LeftEyeDetector, ImgLeftEyeResize);
    ILeftEye=insertObjectAnnotation(ImgLeftEyeResize, 'rectangle', bboxLeftEye, 'LeftEye');
   
    NoseDetector=vision.CascadeObjectDetector('Nose');
    %NoseDetector.MergeThreshold=25;
-   ImgNose=imread('2-12.jpg');
+   ImgNose=imread([pathname, filename]);
    ImgNoseResize=imresize(ImgNose, [320,320]);
    bboxNose=step(NoseDetector, ImgNoseResize);
    INose=insertObjectAnnotation(ImgNoseResize, 'rectangle', bboxNose, 'Nose');
@@ -82,7 +89,7 @@ FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
   
    
    MouthDetector=vision.CascadeObjectDetector('Mouth');
-   ImgMouth=imread('2-12.jpg');
+   ImgMouth=imread([pathname, filename]);
    ImgMouthResize=imresize(ImgMouth, [320,320]);
    MouthDetector.MergeThreshold=40;
    bboxMouth=step(MouthDetector, ImgMouthResize);
@@ -93,7 +100,7 @@ FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
    RightEyeDetector=vision.CascadeObjectDetector('RightEye');
    %RightEyeDetector.MergeThreshold=20;
    RightEyeDetector.MergeThreshold=5;
-   ImgRightEye=imread('2-12.jpg');
+   ImgRightEye=imread([pathname, filename]);
    ImgRightEyeResize=imresize(ImgRightEye, [320,320]);
    bboxRightEye=step(RightEyeDetector, ImgRightEyeResize);
    IRightEye=insertObjectAnnotation(ImgRightEyeResize, 'rectangle', bboxRightEye, 'RightEye');
@@ -681,9 +688,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 
 FaceRecognitionInput
 
-%e=getappdata(0,'imgvalue');
-%axes(handles.axes1);
-%imshow(e);
+
 
 
 % --- Executes on button press in pushbutton2.
