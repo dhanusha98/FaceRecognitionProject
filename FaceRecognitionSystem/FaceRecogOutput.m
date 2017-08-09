@@ -56,8 +56,76 @@ function FaceRecogOutput_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 
 
+FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
+   ImgFace=imread('2-12.jpg');
+   ImgFaceResize=imresize(ImgFace, [320,320]);
+   bboxFace=step(FaceDetector, ImgFaceResize);
+   IFaces=insertObjectAnnotation(ImgFaceResize, 'rectangle', bboxFace, 'Face');
+   axes(handles.axes1)
+   imshow(IFaces);
    
 
+   LeftEyeDetector=vision.CascadeObjectDetector('LeftEye');
+   %LeftEyeDetector.MergeThreshold=40;
+   ImgLeftEye=imread('2-12.jpg');
+   ImgLeftEyeResize=imresize(ImgLeftEye, [320,320]);
+   bboxLeftEye=step(LeftEyeDetector, ImgLeftEyeResize);
+   ILeftEye=insertObjectAnnotation(ImgLeftEyeResize, 'rectangle', bboxLeftEye, 'LeftEye');
+  
+   NoseDetector=vision.CascadeObjectDetector('Nose');
+   %NoseDetector.MergeThreshold=25;
+   ImgNose=imread('2-12.jpg');
+   ImgNoseResize=imresize(ImgNose, [320,320]);
+   bboxNose=step(NoseDetector, ImgNoseResize);
+   INose=insertObjectAnnotation(ImgNoseResize, 'rectangle', bboxNose, 'Nose');
+   
+  
+   
+   MouthDetector=vision.CascadeObjectDetector('Mouth');
+   ImgMouth=imread('2-12.jpg');
+   ImgMouthResize=imresize(ImgMouth, [320,320]);
+   MouthDetector.MergeThreshold=40;
+   bboxMouth=step(MouthDetector, ImgMouthResize);
+   IMouth=insertObjectAnnotation(ImgMouthResize, 'rectangle', bboxMouth,'Mouth');
+   
+    
+   
+   RightEyeDetector=vision.CascadeObjectDetector('RightEye');
+   %RightEyeDetector.MergeThreshold=20;
+   RightEyeDetector.MergeThreshold=5;
+   ImgRightEye=imread('2-12.jpg');
+   ImgRightEyeResize=imresize(ImgRightEye, [320,320]);
+   bboxRightEye=step(RightEyeDetector, ImgRightEyeResize);
+   IRightEye=insertObjectAnnotation(ImgRightEyeResize, 'rectangle', bboxRightEye, 'RightEye');
+   
+   
+   xCentroid_LeftEye=bboxLeftEye(1) + bboxLeftEye(3)/2;
+   yCentroid_LeftEye=bboxLeftEye(2) + bboxLeftEye(4)/2;
+   
+   xCentroid_Nose=bboxNose(1)+ bboxNose(3)/2;
+   yCentroid_Nose=bboxNose(2)+bboxNose(4)/2;
+   
+   xCentroid_RightEye=bboxLeftEye(1) + bboxLeftEye(3)/2;
+   yCentroid_RightEye=bboxLeftEye(2) + bboxLeftEye(4)/2;
+   
+   xCentroid_Mouth=bboxMouth(1)+bboxMouth(3)/2;
+   yCentroid_Mouth=bboxMouth(2)+bboxMouth(4)/2;
+   
+   FaceHeight=bboxFace(4);
+   Width_LeftEye=bboxLeftEye(3);
+   Width_RightEye=bboxRightEye(3);
+   Distance_LeftEye_Nose=sqrt((xCentroid_Nose-xCentroid_LeftEye)^2+(yCentroid_Nose-yCentroid_LeftEye)^2);
+   Distance_RightEye_Nose=sqrt((xCentroid_Nose-xCentroid_RightEye)^2+(yCentroid_Nose-yCentroid_RightEye)^2);
+   Distance_Nose_Mouth=sqrt((xCentroid_Nose-xCentroid_Mouth)^2+(yCentroid_Nose-yCentroid_Mouth)^2);
+   Distance_LeftEye_Mouth=sqrt((xCentroid_LeftEye-xCentroid_Mouth)^2+(yCentroid_LeftEye-yCentroid_Mouth)^2);
+   Distance_RightEye_Mouth=sqrt((xCentroid_LeftEye-xCentroid_Mouth)^2+(yCentroid_LeftEye-yCentroid_Mouth)^2);
+   
+   
+   nnetwork2=evalin('base','network3');
+   
+   outputresult=nnetwork2([FaceHeight; Distance_LeftEye_Mouth; Distance_LeftEye_Nose; Width_LeftEye; Distance_Nose_Mouth; Distance_RightEye_Mouth; Distance_RightEye_Nose; Width_RightEye]);
+   set(handles.editPersonID, 'String', num2str(outputresult));
+   
 % Update handles structure
 guidata(hObject, handles);
 
@@ -624,9 +692,12 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-img=getappdata(0,'imgvalue');
+%img=getappdata(0,'imgvalue');
 
-axes(handles.axes1)
-imshow(img);
+%axes(handles.axes1)
+%imshow(img);
 
+     
    
+
+

@@ -3,7 +3,7 @@ function varargout = FaceRecognitionInput(varargin)
 %      FACERECOGNITIONINPUT, by itself, creates a new FACERECOGNITIONINPUT or raises the existing
 %      singleton*.
 %
-%      H = FACERECOGNITIONINPUT returns the handle to a new FACERECOGNITIONINPUT or the handle to
+%      H = FACERECOGNITIONINPUT returns tTargetDatahe handle to a new FACERECOGNITIONINPUT or the handle to
 %      the existing singleton*.
 %
 %      FACERECOGNITIONINPUT('CALLBACK',hObject,eventData,handles,...) calls the local
