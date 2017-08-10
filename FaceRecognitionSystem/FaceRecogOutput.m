@@ -58,6 +58,7 @@ handles.output = hObject;
 %e=getappdata(0,'imgvalue');
 %axes(handles.axes1);
 %imshow(e);
+evalin('base', 'load(''network3.mat'')');
 
 pathname=getappdata(0, 'pathname');
 filename=getappdata(0, 'filename');
@@ -71,7 +72,6 @@ filename=getappdata(0, 'filename');
    %axes(handles.axes1)
    %imshow(IFaces);
    
-
    LeftEyeDetector=vision.CascadeObjectDetector('LeftEye');
    %LeftEyeDetector.MergeThreshold=40;
    ImgLeftEye=imread([pathname, filename]);
@@ -86,16 +86,12 @@ filename=getappdata(0, 'filename');
    bboxNose=step(NoseDetector, ImgNoseResize);
    INose=insertObjectAnnotation(ImgNoseResize, 'rectangle', bboxNose, 'Nose');
    
-  
-   
    MouthDetector=vision.CascadeObjectDetector('Mouth');
    ImgMouth=imread([pathname, filename]);
    ImgMouthResize=imresize(ImgMouth, [320,320]);
    MouthDetector.MergeThreshold=40;
    bboxMouth=step(MouthDetector, ImgMouthResize);
    IMouth=insertObjectAnnotation(ImgMouthResize, 'rectangle', bboxMouth,'Mouth');
-   
-    
    
    RightEyeDetector=vision.CascadeObjectDetector('RightEye');
    %RightEyeDetector.MergeThreshold=20;
@@ -104,7 +100,6 @@ filename=getappdata(0, 'filename');
    ImgRightEyeResize=imresize(ImgRightEye, [320,320]);
    bboxRightEye=step(RightEyeDetector, ImgRightEyeResize);
    IRightEye=insertObjectAnnotation(ImgRightEyeResize, 'rectangle', bboxRightEye, 'RightEye');
-   
    
    xCentroid_LeftEye=bboxLeftEye(1) + bboxLeftEye(3)/2;
    yCentroid_LeftEye=bboxLeftEye(2) + bboxLeftEye(4)/2;
@@ -127,10 +122,9 @@ filename=getappdata(0, 'filename');
    Distance_LeftEye_Mouth=sqrt((xCentroid_LeftEye-xCentroid_Mouth)^2+(yCentroid_LeftEye-yCentroid_Mouth)^2);
    Distance_RightEye_Mouth=sqrt((xCentroid_LeftEye-xCentroid_Mouth)^2+(yCentroid_LeftEye-yCentroid_Mouth)^2);
    
+   nnetwork3=evalin('base','network3');
    
-   nnetwork2=evalin('base','network3');
-   
-   outputresult=nnetwork2([FaceHeight; Distance_LeftEye_Mouth; Distance_LeftEye_Nose; Width_LeftEye; Distance_Nose_Mouth; Distance_RightEye_Mouth; Distance_RightEye_Nose; Width_RightEye]);
+   outputresult=nnetwork3([FaceHeight; Distance_LeftEye_Mouth; Distance_LeftEye_Nose; Width_LeftEye; Distance_Nose_Mouth; Distance_RightEye_Mouth; Distance_RightEye_Nose; Width_RightEye]);
    set(handles.editPersonID, 'String', num2str(outputresult));
    
 % Update handles structure
