@@ -71,6 +71,7 @@ filename=getappdata(0, 'filename');
    IFaces=insertObjectAnnotation(ImgFaceResize, 'rectangle', bboxFace, 'Face');
    %axes(handles.axes1)
    %imshow(IFaces);
+   assignin('base', 'IFaces', IFaces);
    
    LeftEyeDetector=vision.CascadeObjectDetector('LeftEye');
    %LeftEyeDetector.MergeThreshold=40;
@@ -78,6 +79,8 @@ filename=getappdata(0, 'filename');
    ImgLeftEyeResize=imresize(ImgLeftEye, [320,320]);
    bboxLeftEye=step(LeftEyeDetector, ImgLeftEyeResize);
    ILeftEye=insertObjectAnnotation(ImgLeftEyeResize, 'rectangle', bboxLeftEye, 'LeftEye');
+   assignin('base', 'ILeftEye', ILeftEye);
+
   
    NoseDetector=vision.CascadeObjectDetector('Nose');
    %NoseDetector.MergeThreshold=25;
@@ -85,6 +88,7 @@ filename=getappdata(0, 'filename');
    ImgNoseResize=imresize(ImgNose, [320,320]);
    bboxNose=step(NoseDetector, ImgNoseResize);
    INose=insertObjectAnnotation(ImgNoseResize, 'rectangle', bboxNose, 'Nose');
+   assignin('base', 'INose', INose);
    
    MouthDetector=vision.CascadeObjectDetector('Mouth');
    ImgMouth=imread([pathname, filename]);
@@ -92,6 +96,7 @@ filename=getappdata(0, 'filename');
    MouthDetector.MergeThreshold=40;
    bboxMouth=step(MouthDetector, ImgMouthResize);
    IMouth=insertObjectAnnotation(ImgMouthResize, 'rectangle', bboxMouth,'Mouth');
+   assignin('base', 'IMouth', IMouth);
    
    RightEyeDetector=vision.CascadeObjectDetector('RightEye');
    %RightEyeDetector.MergeThreshold=20;
@@ -100,18 +105,32 @@ filename=getappdata(0, 'filename');
    ImgRightEyeResize=imresize(ImgRightEye, [320,320]);
    bboxRightEye=step(RightEyeDetector, ImgRightEyeResize);
    IRightEye=insertObjectAnnotation(ImgRightEyeResize, 'rectangle', bboxRightEye, 'RightEye');
+   assignin('base', 'IRightEye', IRightEye);
    
    xCentroid_LeftEye=bboxLeftEye(1) + bboxLeftEye(3)/2;
    yCentroid_LeftEye=bboxLeftEye(2) + bboxLeftEye(4)/2;
    
+   assignin('base', 'xCentroid_LeftEye', xCentroid_LeftEye);
+   assignin('base', 'yCentroid_LeftEye', yCentroid_LeftEye);
+
+   
    xCentroid_Nose=bboxNose(1)+ bboxNose(3)/2;
    yCentroid_Nose=bboxNose(2)+bboxNose(4)/2;
+   
+   assignin('base', 'xCentroid_Nose', xCentroid_Nose);
+   assignin('base', 'yCentroid_Nose', yCentroid_Nose);
    
    xCentroid_RightEye=bboxLeftEye(1) + bboxLeftEye(3)/2;
    yCentroid_RightEye=bboxLeftEye(2) + bboxLeftEye(4)/2;
    
+   assignin('base', 'xCentroid_RightEye', xCentroid_RightEye);
+   assignin('base', 'yCentroid_RightEye', yCentroid_RightEye);
+   
    xCentroid_Mouth=bboxMouth(1)+bboxMouth(3)/2;
    yCentroid_Mouth=bboxMouth(2)+bboxMouth(4)/2;
+   
+   assignin('base', 'xCentroid_Mouth', xCentroid_Mouth);
+   assignin('base', 'yCentroid_Mouth', yCentroid_Mouth);
    
    FaceHeight=bboxFace(4);
    Width_LeftEye=bboxLeftEye(3);
@@ -122,10 +141,21 @@ filename=getappdata(0, 'filename');
    Distance_LeftEye_Mouth=sqrt((xCentroid_LeftEye-xCentroid_Mouth)^2+(yCentroid_LeftEye-yCentroid_Mouth)^2);
    Distance_RightEye_Mouth=sqrt((xCentroid_LeftEye-xCentroid_Mouth)^2+(yCentroid_LeftEye-yCentroid_Mouth)^2);
    
+   assignin('base', 'FaceHeight', FaceHeight);
+   assignin('base', 'Width_LeftEye', Width_LeftEye);
+   assignin('base', 'Width_RightEye', Width_RightEye);
+   assignin('base', 'Distance_LeftEye_Nose', Distance_LeftEye_Nose);
+   assignin('base', 'Distance_RightEye_Nose', Distance_RightEye_Nose);
+   assignin('base', 'Distance_Nose_Mouth', Distance_Nose_Mouth);
+   assignin('base', 'Distance_LeftEye_Mouth', Distance_LeftEye_Mouth);
+   assignin('base', 'Distance_RightEye_Mouth', Distance_RightEye_Mouth);
+
+   
    nnetwork3=evalin('base','network3');
    
    outputresult=nnetwork3([FaceHeight; Distance_LeftEye_Mouth; Distance_LeftEye_Nose; Width_LeftEye; Distance_Nose_Mouth; Distance_RightEye_Mouth; Distance_RightEye_Nose; Width_RightEye]);
-   set(handles.editPersonID, 'String', num2str(outputresult));
+   finaloutputresult=round(outputresult);
+   set(handles.editPersonID, 'String', num2str(finaloutputresult));
    
 % Update handles structure
 guidata(hObject, handles);
@@ -143,7 +173,6 @@ function varargout = FaceRecogOutput_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
-
 
 
 function editPersonID_Callback(hObject, eventdata, handles)
@@ -681,7 +710,6 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 FaceRecognitionInput
-
 
 
 
