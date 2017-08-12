@@ -84,7 +84,7 @@
      statsMatrix_LeftEye_Mouth=[statsMatrix_LeftEye_Mouth; Distance_LeftEye_Mouth];
      statsMatrix_RightEye_Mouth=[statsMatrix_RightEye_Mouth; Distance_RightEye_Mouth];
      
-     %Concatena All the Above Matrices to Form Final Result Matrix
+     %Concatenate All the Above Matrices to Form Final Result Matrix
         statsMatrix=[statsMatrix_FaceHeight, statsMatrix_LeftEye_Mouth, statsMatrix_LeftEye_To_Nose_Distance,...
                      statsMatrix_LeftEyeWidth, statsMatrix_Nose_To_Mouth_Distance, statsMatrix_RightEye_Mouth, ...
                      statsMatrix_RightEye_To_Nose_Distance,statsMatrix_RightEyeWidth ];

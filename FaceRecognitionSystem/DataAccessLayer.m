@@ -15,7 +15,8 @@ conn=database('FaceDBConnection', 'root', '');
 
 %validationquery=['SELECT * FROM systemuser WHERE UserName=','''' username '''', 'AND Password=', '''' password ''''];
 validationquery=['SELECT * FROM systemuser WHERE UserName=','''' username ''''];
-datan=select(conn,validationquery);
-assignin('base', 'datan',datan);
+data=select(conn,validationquery);
+assignin('base', 'data',data);
 
 end
+
