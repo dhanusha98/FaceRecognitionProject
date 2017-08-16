@@ -126,6 +126,7 @@ filename=getappdata(0, 'filename');
    RightEyeDetector=vision.CascadeObjectDetector('RightEye');
    %RightEyeDetector.MergeThreshold=20;
    RightEyeDetector.MergeThreshold=5;
+   %ImgRightEye=ImgNoiseRemoval;
    ImgRightEye=ImgNoiseRemoval;
    %ImgRightEyeResize=imresize(ImgRightEye, [320,320]);
    bboxRightEye=step(RightEyeDetector, ImgRightEye);

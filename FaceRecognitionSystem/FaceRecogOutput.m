@@ -22,7 +22,7 @@ function varargout = FaceRecogOutput(varargin)
 
 % Edit the above text to modify the response to help FaceRecogOutput
 
-% Last Modified by GUIDE v2.5 13-Aug-2017 20:59:59
+% Last Modified by GUIDE v2.5 14-Aug-2017 19:29:08
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -632,7 +632,6 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 %axes(handles.axes1)
 %imshow(img);
 
-     
    
 
 
@@ -655,4 +654,81 @@ function slider1_CreateFcn(hObject, eventdata, handles)
 % Hint: slider controls usually have a light gray background.
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
+end
+
+
+% --- Executes on button press in resultdisplaypushbutton.
+function resultdisplaypushbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to resultdisplaypushbutton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+run('DataAccessLayer.m');
+
+PersonID=evalin('base', 'PID');
+PersonName=evalin('base', 'PersonName');
+DOB=evalin('base', 'DOB');
+Sex=evalin('base', 'Sex');
+Height=evalin('base', 'Height');
+Weight=evalin('base', 'Weight');
+EyeColor=evalin('base', 'EyeColor');
+Ethnicity=evalin('base', 'Ethnicity');
+Hair=evalin('base', 'Hair');
+ContactDetails=evalin('base', 'ContactDetails');
+Address=evalin('base', 'Address');
+Description=evalin('base', 'Description');
+Country=evalin('base', 'Country');
+CriminalHistory=evalin('base', 'CriminalHistory');
+FaceImage=evalin('base', 'FaceImage');
+
+set(handles.editPersonID, 'String', PersonID);
+set(handles.editPersonName, 'String', PersonName);
+set(handles.editDOB, 'String', DOB);
+set(handles.editSex, 'String', Sex);
+set(handles.editHeight, 'String', Height);
+set(handles.editWeight, 'String', Weight);
+set(handles.editEyeColor, 'String', EyeColor);
+set(handles.editHair, 'String', Hair);
+set(handles.editEthnicity, 'String', Ethnicity);
+set(handles.editContact, 'String', ContactDetails);
+set(handles.editAddress, 'String', Address);
+set(handles.editDescription, 'String', Description);
+set(handles.editCountry, 'String', Country);
+set(handles.editCriminalHistory, 'String', CriminalHistory);
+
+%FImage=cell2struct(FaceImage, 'Image', 2);
+%set(handles.axes1)
+%imshow(FImage);
+
+%cellImage=cell2mat(FaceImage);
+%grayImage=reshape(cellImage, [1,1]);
+%set(handles.axes1)
+%%imshow(grayImage, []);
+
+FImage=cell2mat(FaceImage);
+%FImageResized=imresize(FImage, [128 128]);
+%assignin('base','FImage', FImageResized);
+set(handles.axes1)
+imshow(FImage{1,1})
+
+
+function editAddress_Callback(hObject, eventdata, handles)
+% hObject    handle to editAddress (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editAddress as text
+%        str2double(get(hObject,'String')) returns contents of editAddress as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editAddress_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editAddress (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
 end

@@ -6,22 +6,12 @@
 %data=select(conn,selectquery);
 %k=data.UserName;
 
-function x=DataAccessLayer()
+function Suspects_Info=DataAccessLayer()
 
-%userid='1';
-%username='DhanushaPS';
-%password='19981212dps';
-%conn=database('FaceDBConnection', 'root', '');
+%This method is to retreive Suspects' Information based on generated final output from Neural Network of System
 
 result=load('finaloutputresult.txt');
 finaloutputresult=num2str(result);
-
-%validationquery=['SELECT * FROM systemuser WHERE UserName=','''' username '''', 'AND Password=', '''' password ''''];
-%validationquery=['SELECT * FROM suspect WHERE UniqueClass=','''' finaloutput ''''];
-%validationquery=('SELECT * FROM systemuser WHERE UserID=1');
-
-%data=select(conn,validationquery);
-%assignin('base', 'data',data);
 
 conn=database('FaceDBConnection', 'root', '');
 searchquery=['SELECT * FROM suspect WHERE UniqueClass=', '''' finaloutputresult ''''];
@@ -31,23 +21,39 @@ curs=fetch(curs);
 data=curs.Data;
 assignin('base', 'data', data);
 
+PID=data(1);
+PersonName=data(2);
+DOB=data(3);
+Sex=data(4);
+Height=data(5);
+Weight=data(6);
+EyeColor=data(7);
+Ethnicity=data(8);
+Hair=data(9);
+ContactDetails=data(10);
+Address=data(11);
+Description=data(12);
+Country=data(13);
+CriminalHistory=data(14);
+UniqueClass=data(15);
+FaceImage=data(16);
 
-%PID=data.PersonID;
-%PersonName=data.PersonName
-%DOB=data.DOB;
-%Sex=data.Sex;
-%Height=data.Height;
-%Weight=data.Weight;
-%EyeColor=data.EyeColor;
-%Hair=data.Hair;
-%Ethnicity=data.Ethnicity;
-%ContactDetails=data.ContactDetails;
-%Address=data.Address;
-%Description=data.Description;
-%Country=data.Country;
-%CriminalHistory=data.CriminalHistory;
-%UniqueClass=data.UniqueClass;
-%FaceImage=data.FaceImage;
+assignin('base', 'PID', PID);
+assignin('base', 'PersonName', PersonName);
+assignin('base', 'DOB', DOB);
+assignin('base', 'Sex', Sex);
+assignin('base', 'Height', Height);
+assignin('base', 'Weight', Weight);
+assignin('base', 'EyeColor', EyeColor);
+assignin('base', 'Ethnicity', Ethnicity);
+assignin('base', 'Hair', Hair);
+assignin('base', 'ContactDetails', ContactDetails);
+assignin('base', 'Address', Address);
+assignin('base', 'Description', Description);
+assignin('base', 'Country', Country);
+assignin('base', 'CriminalHistory', CriminalHistory);
+assignin('base', 'UniqueClass', UniqueClass);
+assignin('base', 'FaceImage', FaceImage);
 
 
 end
