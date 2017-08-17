@@ -1,28 +1,27 @@
-%k=type('statsMatrixResult.mat');
-%assignin('base', 'k',k);
-%type('statsMatrixResult.txt');
 
-%FaceDatabase=imageSet('Training Set', 'recursive');
-%imgSet=imageSet(FaceDatabase);
+statsMatrix_FaceHeight=[];
+statsMatrix_LeftEyeWidth=[];
+statsMatrix_RightEyeWidth=[];
+statsMatrix_LeftEye_To_Nose_Distance=[];
+statsMatrix_RightEye_To_Nose_Distance=[];
+statsMatrix_Nose_To_Mouth_Distance=[];
+statsMatrix_LeftEye_Mouth=[];
+statsMatrix_RightEye_Mouth=[];
+statsMatrix=[];
+statsMatrixAll=[];
 
-FaceDatabase=imageSet('Training Set', 'recursive');
-
-images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\500';
-
+images='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set';
 
 for i=1:500
     
-    k=FaceDatabase(i);
-    jpgfiles=dir(fullfile(k,'\*.jpg*'));
-    n=numel(jpgfiles);  
-    im=read(FaceDatabase(i), jpgfiles);
+    imgstr=num2str(i);
+    imgfolder=strcat(images, '\', imgstr);
+    jpgfiles=dir(fullfile(imgfolder,'\*.jpg*'));
+    n=numel(jpgfiles);
     
-    for r=1:n
-        imgjpg=jpgfiles(r).name;
-        img=imread(fullfile(k,imgjpg));
-        
-        
-        %img=imread(fullFileName);
+    for k=1:n
+       im=jpgfiles(k).name;          
+       img=imread(fullfile(imgfolder, im));
 
 imgGray=rgb2gray(img);
 imgresize=imresize(imgGray, [480, 480]);
@@ -91,7 +90,6 @@ IRightEye=insertObjectAnnotation(ImgRightEye, 'rectangle', bboxRightEye, 'RightE
         statsMatrix=[statsMatrix_FaceHeight, statsMatrix_LeftEye_Mouth, statsMatrix_LeftEye_To_Nose_Distance,...
                      statsMatrix_LeftEyeWidth, statsMatrix_Nose_To_Mouth_Distance, statsMatrix_RightEye_Mouth, ...
                      statsMatrix_RightEye_To_Nose_Distance,statsMatrix_RightEyeWidth ];
-        
-        
+       
     end
 end

@@ -1,0 +1,25 @@
+%k=type('statsMatrixResult.mat');
+%assignin('base', 'k',k);
+%type('statsMatrixResult.txt');
+
+%FaceDatabase=imageSet('Training Set', 'recursive');
+%imgSet=imageSet(FaceDatabase);
+
+FaceDatabase=imageSet('Training Set', 'recursive');
+
+images ='E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set\500';
+
+
+for i=1:500
+    
+    k=FaceDatabase(i);
+    jpgfiles=dir(fullfile(k,'\*.jpg*'));
+    n=numel(jpgfiles);  
+    im=read(FaceDatabase(i), jpgfiles);
+    
+    for r=1:n
+        imgjpg=jpgfiles(r).name;
+        img=imread(fullfile(k,imgjpg));
+        
+    end
+end
