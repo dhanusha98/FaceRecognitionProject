@@ -79,10 +79,10 @@ function loginhelp_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
- helpdlg({'1. User Authentications are Case-Sensitive and make sure to provide them based on standards.' 
-     '2. Make sure to change User Authentications every month to ensure high security.' 
-     '3. User Accounts are two types which are Normal User and Admin User. Based on the provided user authentication, relevant user main menu will be opened.'
-     '4. User Authentication Mechanisms available if user not provide user authentications for relevant required sections.'}, 'Login Process Help');
+ helpdlg({'1. User Authentications are Case-Sensitive and make sure to provide them based on standards' 
+     '2. Make sure to change User Authentications every month to ensure high security' 
+     '3. User Accounts are two types which are Normal User and Admin User. Based on the provided user authentication, relevant user main menu will be opened'
+     '4. User Authentication Mechanisms available if user not provide user authentications for relevant required sections'}, 'Login Process Help');
 
 % --- Executes on button press in functionhelp.
 function functionhelp_Callback(hObject, eventdata, handles)
@@ -90,10 +90,10 @@ function functionhelp_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-helpdlg({'1. All the functions are provided in the Main Menu. Click relevant button to start function implementation.' 
-         '2. Admin Users are only granted for some system operations and mainly for configurations.' 
-         '3. Changing Code lines in m file related to each function cause to change system features totally in some circumstances.'
-         '4. If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com).'}, 'Function Help');
+helpdlg({'1. All the functions are provided in the Main Menu. Click relevant button to start function implementation' 
+         '2. Admin Users are only granted for some system operations and mainly for configurations' 
+         '3. Changing Code lines in m file related to each function cause to change system features totally in some circumstances'
+         '4. If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com)'}, 'Function Help');
 
 % --- Executes on button press in facerecognitionhelp.
 function facerecognitionhelp_Callback(hObject, eventdata, handles)

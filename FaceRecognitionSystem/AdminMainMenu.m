@@ -22,7 +22,7 @@ function varargout = AdminMainMenu(varargin)
 
 % Edit the above text to modify the response to help AdminMainMenu
 
-% Last Modified by GUIDE v2.5 26-Jul-2017 22:40:29
+% Last Modified by GUIDE v2.5 18-Aug-2017 23:50:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -54,6 +54,7 @@ function AdminMainMenu_OpeningFcn(hObject, eventdata, handles, varargin)
 
 % Choose default command line output for AdminMainMenu
 handles.output = hObject;
+
 axes(handles.axes1)
 imshow('facewallpaper.jpg');
 
@@ -81,20 +82,22 @@ function varargout = AdminMainMenu_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in pushbutton3.
-function pushbutton3_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
+% --- Executes on button press in facerecognitionpushbutton.
+function facerecognitionpushbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to facerecognitionpushbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-FaceRecognitionInput
+close all;
+AdminFaceRecogInput
 
-% --- Executes on button press in pushbutton5.
-function pushbutton5_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton5 (see GCBO)
+% --- Executes on button press in trainneuralnetworkpushbutton.
+function trainneuralnetworkpushbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to trainneuralnetworkpushbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+ close all;
+ TrainNeuralNetwork
 
 % --- Executes on button press in pushbutton6.
 function pushbutton6_Callback(hObject, eventdata, handles)
@@ -103,16 +106,19 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in pushbutton7.
-function pushbutton7_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton7 (see GCBO)
+% --- Executes on button press in helppanelpushbutton.
+function helppanelpushbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to helppanelpushbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+close all;
 AdminHelpPanel
 
-% --- Executes on button press in pushbutton9.
-function pushbutton9_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton9 (see GCBO)
+% --- Executes on button press in logoutpushbutton.
+function logoutpushbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to logoutpushbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+close all;
+UserLogin

@@ -22,7 +22,7 @@ function varargout = FaceRecogOutput(varargin)
 
 % Edit the above text to modify the response to help FaceRecogOutput
 
-% Last Modified by GUIDE v2.5 14-Aug-2017 19:29:08
+% Last Modified by GUIDE v2.5 18-Aug-2017 23:19:51
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -62,8 +62,8 @@ handles.output = hObject;
 finaloutputresult=getappdata(0, 'finaloutputresult');
 set(handles.editPersonID, 'String', num2str(finaloutputresult));
 
+%save('finaloutputresult.txt', 'finaloutputresult', '-ascii');
 save('finaloutputresult.txt', 'finaloutputresult', '-ascii');
-   
 % Update handles structure
 guidata(hObject, handles);
 
@@ -663,6 +663,36 @@ function resultdisplaypushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+
+
+function editAddress_Callback(hObject, eventdata, handles)
+% hObject    handle to editAddress (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editAddress as text
+%        str2double(get(hObject,'String')) returns contents of editAddress as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editAddress_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editAddress (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in displayresultspushbutton.
+function displayresultspushbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to displayresultspushbutton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
 run('DataAccessLayer.m');
 
 PersonID=evalin('base', 'PID');
@@ -705,30 +735,10 @@ set(handles.editCriminalHistory, 'String', CriminalHistory);
 %set(handles.axes1)
 %%imshow(grayImage, []);
 
-FImage=cell2mat(FaceImage);
+
 %FImageResized=imresize(FImage, [128 128]);
 %assignin('base','FImage', FImageResized);
-set(handles.axes1)
-imshow(FImage{1,1})
 
-
-function editAddress_Callback(hObject, eventdata, handles)
-% hObject    handle to editAddress (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of editAddress as text
-%        str2double(get(hObject,'String')) returns contents of editAddress as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function editAddress_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to editAddress (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
+%FImage=cell2mat(FaceImage);
+%set(handles.axes1)
+%imshow(FImage{1,1})

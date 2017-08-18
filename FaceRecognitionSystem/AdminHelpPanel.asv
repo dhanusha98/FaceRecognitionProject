@@ -79,10 +79,10 @@ function loginhelppushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
- helpdlg({'1. User Authentications are Case-Sensitive and make sure to provide them based on standards.' 
-     '2. Make sure to change User Authentications every month to ensure high security.' 
-     '3. User Accounts are two types which are Normal User and Admin User. Based on the provided user authentication, relevant user main menu will be opened.'
-     '4. User Authentication Mechanisms available if user not provide user authentications for relevant required sections.'}, 'Login Process Help');
+ helpdlg({'1. User Authentications are Case-Sensitive and make sure to provide them based on standards' 
+     '2. Make sure to change User Authentications every month to ensure high security' 
+     '3. User Accounts are two types which are Normal User and Admin User. Based on the provided user authentication, relevant user main menu will be opened'
+     '4. User Authentication Mechanisms available if user not provide user authentications for relevant required sections'}, 'Login Process Help');
 
 
 % --- Executes on button press in functionhelppushbutton.
@@ -91,10 +91,10 @@ function functionhelppushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-helpdlg({'1. All the functions are provided in the Main Menu. Click relevant button to start function implementation.' 
-         '2. Admin Users are only granted for some system operations and mainly for configurations.' 
-         '3. Changing Code lines in m file related to each function cause to change system features totally in some circumstances.'
-         '4. If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com).'}, 'Function Help');
+helpdlg({'1. All the functions are provided in the Main Menu. Click relevant button to start function implementation' 
+         '2. Admin Users are only granted for some system operations and mainly for configurations' 
+         '3. Changing Code lines in m file related to each function cause to change system features totally in some circumstances'
+         '4. If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com)'}, 'Function Help');
 
 
 % --- Executes on button press in facerecognitionpushbutton.
@@ -106,9 +106,9 @@ function facerecognitionpushbutton_Callback(hObject, eventdata, handles)
 helpdlg({'1. User should provide image to start recognition process.' 
          '2. Provided Image must contain only single person' 
          '3. Recognition based on facial measurements like Face Height, Width of Eyes, Distance from Eyes to Nose etc.'
-         '4. If provided image not contains any person, Error Notification will display.'
-         '5. Face Recognition Results will consist with Person Image, Bio Data (ex. Height, Address..), Criminal History etc. and those are non-editable.'
-         '6. If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com).'}, 'Help for Face Recognition Process');
+         '4. If provided image not contains any person, Error Notification will display'
+         '5. Face Recognition Results will consist with Person Image, Bio Data (ex. Height, Address..), Criminal History etc. and those are non-editable'
+         '6. If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com)'}, 'Help for Face Recognition Process');
      
 
 % --- Executes on button press in ANNTrainPushbutton.
@@ -118,11 +118,11 @@ function ANNTrainPushbutton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 helpdlg({'1. Admin Users only granted to implement Train Neural Network Operation.' 
-         '2. Standard Training DataSet must be provided for new training.' 
-         '3. Input and Target Datasets should provide separately for system for new training and they should highly accurate and based on neural network training standards'
-         '4. If there any problem with training dataset, error notification will display.'
-         '5. Number of Inputs and Targets should be standard size. Targets must available for every relevant set of inputs.'
-         '6. If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com).'}, 'Help for Face Recognition Process');
+         '2. Standard Training DataSet must be provided for new training' 
+         '3. Input and Target Datasets should provide separately for system for new training and they should highly accurate and based on other neural network standards '
+         '4. If provided image not contai'
+         '5. Face Recognition Results will consist with Person Image, Bio Data (ex. Height, Address..), Criminal History etc. and those are non-editable'
+         '6. If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com)'}, 'Help for Face Recognition Process');
 
 % --- Executes on button press in Otherproblemspushbutton.
 function Otherproblemspushbutton_Callback(hObject, eventdata, handles)
@@ -130,7 +130,7 @@ function Otherproblemspushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-helpdlg({'If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com).' 
+helpdlg({'If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com)' 
          }, 'Help');
 
 % --- Executes on button press in pushbutton6.
