@@ -22,7 +22,7 @@ function varargout = NormalUserHelpPanel(varargin)
 
 % Edit the above text to modify the response to help NormalUserHelpPanel
 
-% Last Modified by GUIDE v2.5 19-Aug-2017 01:13:41
+% Last Modified by GUIDE v2.5 19-Aug-2017 13:09:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -118,3 +118,11 @@ helpdlg({'If any problem occured in any operation implementation of system, plea
          }, 'Help');
 
 
+% --- Executes on button press in backpushbutton.
+function backpushbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to backpushbutton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+close all;
+NormalUserMainMenu

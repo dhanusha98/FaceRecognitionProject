@@ -22,7 +22,7 @@ function varargout = TrainNeuralNetwork(varargin)
 
 % Edit the above text to modify the response to help TrainNeuralNetwork
 
-% Last Modified by GUIDE v2.5 26-Jul-2017 22:20:24
+% Last Modified by GUIDE v2.5 19-Aug-2017 14:37:54
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -73,15 +73,18 @@ function varargout = TrainNeuralNetwork_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in pushbutton2.
-function pushbutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in helppushbutton.
+function helppushbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to helppushbutton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+AdminHelpPanel

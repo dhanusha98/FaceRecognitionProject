@@ -22,7 +22,7 @@ function varargout = AdminHelpPanel(varargin)
 
 % Edit the above text to modify the response to help AdminHelpPanel
 
-% Last Modified by GUIDE v2.5 19-Aug-2017 01:51:04
+% Last Modified by GUIDE v2.5 19-Aug-2017 13:13:29
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -145,3 +145,13 @@ function pushbutton7_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in backpushbutton.
+function backpushbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to backpushbutton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+close all;
+AdminMainMenu

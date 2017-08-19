@@ -129,19 +129,53 @@ function loginpushbutton_Callback(hObject, eventdata, handles)
 usn=get(handles.txtusername, 'string'); %Username TextBox value
 psw=get(handles.txtpassword, 'string'); %Password TextBox value
 
-%if isempty(usn) || isempty(psw)
+if isempty(usn) || isempty(psw)
     
-    %msgbox('Enter User Authentications');
-   
+    msgbox('Please Provide Username and Password!');
+
+else
+    
+SystemUserDataLayer(usn, psw)
+uservalidationdata=string(evalin('base', 'uservalidation'));
+
+%VerificationResult=isempty(uservalidationdata);
+%NormalUserChecker=isequal(usertypestr, 'NormalUser');
+%AdminUserChecker=isequal(usertypestr, 'AdminUser');
+
+%if isequal(VerificationResult, 0) 
+%if uservalidationdata(1) ~='No Data' 
+     %if usertypestr=='NormalUser'
+       %close all;
+       %NormalUserMainMenu  
+     %elseif usertypestr=='AdminUser'
+        %close all;
+        %AdminMainMenu
+     %else
+         %msgbox('Problem with User Authentications. Please Try Again');
+     %end
+   %elseif uservalidationdata(1)=='No Data'
+    %msgbox('Invalid User Authentications');
+  
 %end
 
-if isequal(usn, 'Piumal') & isequal(psw,'123') 
+ if uservalidationdata(1)=='No Data'
     
-    close all;
-    NormalUserMainMenu
-
-else 
     msgbox('Invalid User Authentications');
+ elseif uservalidationdata(1) ~='No Data'
+    
+    usertype=uservalidationdata(8);
+    
+     if usertype=='NormalUser'
+       close all;
+       NormalUserMainMenu  
+     elseif usertype=='AdminUser'
+        close all;
+        AdminMainMenu
+     else
+         msgbox('Problem with User Authentications. Please Try Again');
+     end
+  end
+
 end
 % --- Executes on button press in resetpushbutton.
 function resetpushbutton_Callback(hObject, eventdata, handles) 
@@ -166,4 +200,7 @@ function helpbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-helpdlg('This is Help Panel');
+helpdlg({'1. User Authentications are Case-Sensitive and make sure to provide them based on standards.' 
+     '2. Make sure to change User Authentications every month to ensure high security.' 
+     '3. User Accounts are two types which are Normal User and Admin User. Based on the provided user authentication, relevant user main menu will be opened.'
+     '4. User Authentication Mechanisms available if user not provide user authentications for relevant required sections.'}, 'Login Process Help');

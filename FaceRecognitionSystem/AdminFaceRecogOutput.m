@@ -428,7 +428,8 @@ function resultsdisplaypushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-run('DataAccessLayer.m');
+finaloutputresult=getappdata(0, 'finaloutputresult');
+SuspectDataLayer(finaloutputresult)
 
 PersonID=evalin('base', 'PID');
 PersonName=evalin('base', 'PersonName');
