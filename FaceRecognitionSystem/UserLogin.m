@@ -186,7 +186,6 @@ function resetpushbutton_Callback(hObject, eventdata, handles)
 set(handles.txtusername, 'string', '');
 set(handles.txtpassword, 'string', '');
 
-
 % --- Executes on button press in exitbutton.
 function exitbutton_Callback(hObject, eventdata, handles)
 % hObject    handle to exitbutton (see GCBO)

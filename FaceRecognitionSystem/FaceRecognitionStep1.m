@@ -55,7 +55,7 @@ function FaceRecognitionStep1_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecognitionStep1
 handles.output = hObject;
 
-evalin('base', 'load(''network5.mat'')');
+evalin('base', 'load(''network6.mat'')');
 
 pathname=getappdata(0, 'pathname');
 filename=getappdata(0, 'filename');

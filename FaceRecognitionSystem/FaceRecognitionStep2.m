@@ -73,10 +73,10 @@ handles.output = hObject;
    set(handles.LeftEyeToMouthDistance, 'String', num2str(Distance_LeftEye_Mouth));
    set(handles.RightEyeToMouthDistance, 'String', num2str(Distance_RightEye_Mouth));
    
-   nnetwork5=evalin('base','network5');
+   nnetwork6=evalin('base','network6');
    
-   outputresult=nnetwork5([FaceHeight; Distance_LeftEye_Mouth; Distance_LeftEye_Nose; Width_LeftEye; Distance_Nose_Mouth; Distance_RightEye_Mouth; Distance_RightEye_Nose; Width_RightEye]);
-   finaloutputresult=round(outputresult, -1);
+   outputresult=nnetwork6([FaceHeight; Distance_LeftEye_Mouth; Distance_LeftEye_Nose; Width_LeftEye; Distance_Nose_Mouth; Distance_RightEye_Mouth; Distance_RightEye_Nose; Width_RightEye]);
+   finaloutputresult=round(outputresult);
    set(handles.NeuralNetOutput, 'String', num2str(outputresult));
    set(handles.FinalResult, 'String', num2str(finaloutputresult));
 

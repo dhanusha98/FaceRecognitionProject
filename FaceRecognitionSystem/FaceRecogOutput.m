@@ -695,7 +695,7 @@ function displayresultspushbutton_Callback(hObject, eventdata, handles)
 
 %run('DataAccessLayer.m');
 finaloutputresult=getappdata(0, 'finaloutputresult');
-SuspectDataLayer(finaloutputresult)
+SuspectDataLayer(101)
 
 PersonID=evalin('base', 'PID');
 PersonName=evalin('base', 'PersonName');
@@ -728,6 +728,27 @@ set(handles.editDescription, 'String', Description);
 set(handles.editCountry, 'String', Country);
 set(handles.editCriminalHistory, 'String', CriminalHistory);
 
+%FaceImage{1,1}=uint8(8000 * 1);
+%axes(handles.axes1)
+%imshow(FaceImage{1,1});
+
+%newimage = FaceImage{1};
+%A=newimage;
+
+%img=cell2mat(FaceImage);
+%imwrite(img, 'FaceImage.jpg');
+
+FImage=FaceImage{1,1};
+grayImage = uint8(FImage);
+assignin('base', 'grayImage', grayImage);
+axes(handles.axes1)
+imshow(grayImage);
+
+
+%imshow(newimage);
+%assignin('base', 'newimage', newimage);
+%axes(handles.axes1)
+%imshow(newimage)
 %FImage=cell2struct(FaceImage, 'Image', 2);
 %set(handles.axes1)
 %imshow(FImage);
