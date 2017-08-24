@@ -738,11 +738,11 @@ set(handles.editCriminalHistory, 'String', CriminalHistory);
 %img=cell2mat(FaceImage);
 %imwrite(img, 'FaceImage.jpg');
 
-FImage=FaceImage{1,1};
-grayImage = uint8(FImage);
-assignin('base', 'grayImage', grayImage);
-axes(handles.axes1)
-imshow(grayImage);
+%FImage=FaceImage{1,1};
+%grayImage = uint8(FImage);
+%assignin('base', 'grayImage', grayImage);
+%axes(handles.axes1)
+%imshow(grayImage);
 
 
 %imshow(newimage);
@@ -765,3 +765,38 @@ imshow(grayImage);
 %FImage=cell2mat(FaceImage);
 %set(handles.axes1)
 %imshow(FImage{1,1})
+
+TargetFolder = 'E:\FaceRecognitionProject\FaceRecognitionSystem';
+cd(TargetFolder);
+try 
+        
+    targetfilename = ['xyz.jpg'];
+    bytes = FaceImage{1,1};
+    
+     fid = fopen(targetfilename,'w'); %Get a file desciptor for the target file 
+                    
+     if fid
+     fwrite(fid,bytes,'uint8'); %write the file
+     fclose(fid); %close fid or we will not be able to open the image till program exits.
+                    
+     end
+    
+    
+catch exception
+    
+    rethrow(exception);
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

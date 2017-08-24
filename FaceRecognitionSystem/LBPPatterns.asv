@@ -1,0 +1,6 @@
+
+
+I=imread('I281v.jpg');
+IK=rgb2gray(I);
+
+features=extractLBPFeatures(IK);
