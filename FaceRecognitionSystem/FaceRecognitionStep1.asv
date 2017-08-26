@@ -55,7 +55,7 @@ function FaceRecognitionStep1_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecognitionStep1
 handles.output = hObject;
 
-evalin('base', 'load(''NeuralNetwork.mat'')');
+evalin('base', 'load(''network6.mat'')');
 
 pathname=getappdata(0, 'pathname');
 filename=getappdata(0, 'filename');
@@ -87,8 +87,7 @@ axes(handles.CropImageAxes)
 imshow(IFaceCropped);
 
  Extracted_Face_Features=extractLBPFeatures(IFaceCropped);
- 
- %assignin('base', 'Extracted_Face_Features', Extracted_Face_Features);
+
    %setappdata(0, 'FaceHeight', FaceHeight);
    %setappdata(0, 'Width_LeftEye', Width_LeftEye);
    %setappdata(0, 'Width_RightEye', Width_RightEye);
@@ -98,8 +97,27 @@ imshow(IFaceCropped);
    %setappdata(0, 'Distance_LeftEye_Mouth', Distance_LeftEye_Mouth);
    %setappdata(0, 'Distance_RightEye_Mouth', Distance_RightEye_Mouth);
    
-   setappdata(0, 'Extracted_Face_Features', Extracted_Face_Features);
- 
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'SecondFeature', ExtractedFace_Face_Features(2));
+   setappdata(0, 'ThirFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+   setappdata(0, 'FirstFeature', ExtractedFace_Face_Features(1));
+
 
 
 % Update handles structure

@@ -695,7 +695,7 @@ function displayresultspushbutton_Callback(hObject, eventdata, handles)
 
 %run('DataAccessLayer.m');
 finaloutputresult=getappdata(0, 'finaloutputresult');
-SuspectDataLayer(101)
+SuspectDataLayer(finaloutputresult)
 
 PersonID=evalin('base', 'PID');
 PersonName=evalin('base', 'PersonName');
@@ -766,26 +766,29 @@ set(handles.editCriminalHistory, 'String', CriminalHistory);
 %set(handles.axes1)
 %imshow(FImage{1,1})
 
-TargetFolder = 'E:\FaceRecognitionProject\FaceRecognitionSystem';
-cd(TargetFolder);
-try 
+
+
+
+%TargetFolder = 'E:\FaceRecognitionProject\FaceRecognitionSystem';
+%cd(TargetFolder);
+%try 
         
-    targetfilename = ['xyz.jpg'];
-    bytes = FaceImage{1,1};
+   % targetfilename = ['xyz.jpg'];
+    %bytes = FaceImage{1,1};
     
-     fid = fopen(targetfilename,'w'); %Get a file desciptor for the target file 
+     %fid = fopen(targetfilename,'w'); %Get a file desciptor for the target file 
                     
-     if fid
-     fwrite(fid,bytes,'uint8'); %write the file
-     fclose(fid); %close fid or we will not be able to open the image till program exits.
+     %if fid
+     %fwrite(fid,bytes,'uint8'); %write the file
+     %fclose(fid); %close fid or we will not be able to open the image till program exits.
                     
-     end
+    % end
     
     
-catch exception
+%catch exception
     
-    rethrow(exception);
-end
+    %rethrow(exception);
+%end
 
 
 
