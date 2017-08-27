@@ -22,7 +22,7 @@ function varargout = AdminFaceRecogOutput(varargin)
 
 % Edit the above text to modify the response to help AdminFaceRecogOutput
 
-% Last Modified by GUIDE v2.5 18-Aug-2017 23:33:32
+% Last Modified by GUIDE v2.5 26-Aug-2017 22:12:59
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -332,18 +332,18 @@ end
 
 
 
-function edit12_Callback(hObject, eventdata, handles)
-% hObject    handle to edit12 (see GCBO)
+function editCountry_Callback(hObject, eventdata, handles)
+% hObject    handle to editCountry (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit12 as text
-%        str2double(get(hObject,'String')) returns contents of edit12 as a double
+% Hints: get(hObject,'String') returns contents of editCountry as text
+%        str2double(get(hObject,'String')) returns contents of editCountry as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit12_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit12 (see GCBO)
+function editCountry_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editCountry (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -462,6 +462,16 @@ set(handles.editDescription, 'String', Description);
 set(handles.editCountry, 'String', Country);
 set(handles.editCriminalHistory, 'String', CriminalHistory);
 
+%cd 'E:\FaceRecognitionProject\FaceRecognitionSystem'
+%parsebinary(FImage,'BMP');
+%FaceImg=imread('testfile.bmp');
+
+
+FImage=FaceImage{1,1};
+
+fwrite(fileID,FImage)
+fclose(fileID);
+
 %FImage=cell2struct(FaceImage, 'Image', 2);
 %set(handles.axes1)
 %imshow(FImage);
@@ -471,8 +481,8 @@ set(handles.editCriminalHistory, 'String', CriminalHistory);
 %set(handles.axes1)
 %%imshow(grayImage, []);
 
-FImage=cell2mat(FaceImage);
+%FImage=cell2mat(FaceImage);
 %FImageResized=imresize(FImage, [128 128]);
 %assignin('base','FImage', FImageResized);
-set(handles.axes1)
-imshow(FImage{1,1})
+%set(handles.axes1)
+%imshow(FImage{1,1})

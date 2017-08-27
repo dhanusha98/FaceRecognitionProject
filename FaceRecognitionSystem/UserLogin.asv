@@ -55,10 +55,9 @@ function UserLogin_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for UserLogin
 handles.output = hObject;
 
-img=imread('facewallpaper.jpg');
-imgresize=imresize(img, [640,640]);
+img=imread('ANNTrain.jpeg');
 axes(handles.axes2)
-imshow(imgresize);
+imshow(img);
 
 % Update handles structure
 guidata(hObject, handles);

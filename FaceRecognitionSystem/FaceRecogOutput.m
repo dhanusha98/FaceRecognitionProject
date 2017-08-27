@@ -728,6 +728,31 @@ set(handles.editDescription, 'String', Description);
 set(handles.editCountry, 'String', Country);
 set(handles.editCriminalHistory, 'String', CriminalHistory);
 
+TargetFolder = 'E:\FaceRecognitionProject\FaceRecognitionSystem\FaceImageResult';
+cd(TargetFolder);
+
+FImage=FaceImage{1,1};
+
+ if ~isempty(FImage)
+     
+     [row col]=size(FImage);
+     
+     for i=1:row
+         targetfilename=['xyz.jpg'];
+         
+          %bytes = FaceImage{1,1}; 
+          fid = fopen(targetfilename,'w'); %Get a file desciptor for the target file 
+                    
+          if fid
+              fwrite(fid,FImage,'uint8'); %write the file
+              fclose(fid); %close fid or we will not be able to open the image till program exits.                     
+          end
+          
+         
+     end
+     
+ end
+
 %FaceImage{1,1}=uint8(8000 * 1);
 %axes(handles.axes1)
 %imshow(FaceImage{1,1});
