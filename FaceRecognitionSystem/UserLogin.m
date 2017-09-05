@@ -55,10 +55,10 @@ function UserLogin_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for UserLogin
 handles.output = hObject;
 
-img=imread('facewallpaper.jpg');
-imgresize=imresize(img, [640,640]);
+img=imread('facewallpaper.jpg');        %Image to be display in User Login
+imgresize=imresize(img, [640,640]);     %Resize Image to 640x640 dimension
 axes(handles.axes2)
-imshow(imgresize);
+imshow(imgresize);                      %Display Images on Axes
 
 % Update handles structure
 guidata(hObject, handles);
@@ -140,43 +140,24 @@ if isempty(usn) || isempty(psw)
 
 else
     
-SystemUserDataLayer(usn, psw)
-uservalidationdata=string(evalin('base', 'uservalidation'));
-
-%VerificationResult=isempty(uservalidationdata);
-%NormalUserChecker=isequal(usertypestr, 'NormalUser');
-%AdminUserChecker=isequal(usertypestr, 'AdminUser');
-
-%if isequal(VerificationResult, 0) 
-%if uservalidationdata(1) ~='No Data' 
-     %if usertypestr=='NormalUser'
-       %close all;
-       %NormalUserMainMenu  
-     %elseif usertypestr=='AdminUser'
-        %close all;
-        %AdminMainMenu
-     %else
-         %msgbox('Problem with User Authentications. Please Try Again');
-     %end
-   %elseif uservalidationdata(1)=='No Data'
-    %msgbox('Invalid User Authentications');
-  
-%end
-%loginsuccessicon=imread('loginsuccessicon.png');
+SystemUserDataLayer(usn, psw)  %Parse User Authentications for Data Access Layer file for verification from database
+uservalidationdata=string(evalin('base', 'uservalidation'));   %User Verification Results
 
 [cdata,map] = imread('loginsuccessicon.png'); 
 
  if uservalidationdata(1)=='No Data'
-   invalidmsg=msgbox('Invalid User Authentications', 'Error', 'error');
+   invalidmsg=msgbox('Invalid User Authentications', 'Error', 'error'); %Invalid User Authentications
  elseif uservalidationdata(1) ~='No Data'
     
+        %Correct User Authentications
     
-       h=msgbox('Login Successful!', 'Success', 'custom', cdata, map, 'modal');
-       set(h, 'position', [400 300 180 60]);
+       h=msgbox('Login Successful!', 'Success', 'custom', cdata, map, 'modal');  %Declaration of 'h' variable to assign and display message box with suitable size
+       set(h, 'position', [400 300 180 60]); %Set Message box Position and Size
        uiwait(h);
-       close all;
-       NormalUserMainMenu  
-     else
+       close all;   %Close current GUI
+       NormalUserMainMenu  %Navigate to Main Menu GUI
+  else
+        %Message box to display for unexpected error in User Authentications
          msgbox('Problem with User Authentications. Please Try Again', 'Error', 'error');
   end
   
@@ -188,15 +169,20 @@ function resetpushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-set(handles.txtusername, 'string', '');
-set(handles.txtpassword, 'string', '');
+%RESET BUTTON IMPLEMENTATION
+
+set(handles.txtusername, 'string', '');   %CLEAR USERNAME TEXT FIELD
+set(handles.txtpassword, 'string', '');   %CLEAR PASSWORD TEXT FIELD
 
 % --- Executes on button press in exitbutton.
 function exitbutton_Callback(hObject, eventdata, handles)
 % hObject    handle to exitbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-close all;
+
+%EXIT BUTTON IMPLEMENTATION
+
+close all;    %Close current GUI
 
 % --- Executes on button press in helpbutton.
 function helpbutton_Callback(hObject, eventdata, handles)
@@ -204,6 +190,9 @@ function helpbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+%HELP BUTTON IMPLEMENTATION
+
+%HELP NOTIFICATION
 helpdlg({'1. User Authentications are Case-Sensitive and make sure to provide them based on standards.' 
      '2. Make sure to change User Authentications every month to ensure high security.' 
      '3. User Accounts are two types which are Normal User and Admin User. Based on the provided user authentication, relevant user main menu will be opened.'

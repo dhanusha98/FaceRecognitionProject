@@ -55,9 +55,10 @@ function UserLogin_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for UserLogin
 handles.output = hObject;
 
-img=imread('ANNTrain.jpeg');
+img=imread('facewallpaper.jpg');        %Image to be display in User Login
+imgresize=imresize(img, [640,640]);     %Resize Image to 640x640 dimension
 axes(handles.axes2)
-imshow(img);
+imshow(imgresize);                      %Display Images on Axes
 
 % Update handles structure
 guidata(hObject, handles);
@@ -135,50 +136,31 @@ psw=get(handles.txtpassword, 'string'); %Password TextBox value
 
 if isempty(usn) || isempty(psw)
     
-    msgbox('Please Provide Username and Password!');
+    msg=msgbox('Please Provide Username and Password!', 'Error', 'warn');
 
 else
     
-SystemUserDataLayer(usn, psw)
-uservalidationdata=string(evalin('base', 'uservalidation'));
+SystemUserDataLayer(usn, psw)  %Parse User Authentications for Data Access Layer file for verification from database
+uservalidationdata=string(evalin('base', 'uservalidation'));   %User Verification Results
 
-%VerificationResult=isempty(uservalidationdata);
-%NormalUserChecker=isequal(usertypestr, 'NormalUser');
-%AdminUserChecker=isequal(usertypestr, 'AdminUser');
-
-%if isequal(VerificationResult, 0) 
-%if uservalidationdata(1) ~='No Data' 
-     %if usertypestr=='NormalUser'
-       %close all;
-       %NormalUserMainMenu  
-     %elseif usertypestr=='AdminUser'
-        %close all;
-        %AdminMainMenu
-     %else
-         %msgbox('Problem with User Authentications. Please Try Again');
-     %end
-   %elseif uservalidationdata(1)=='No Data'
-    %msgbox('Invalid User Authentications');
-  
-%end
+[cdata,map] = imread('loginsuccessicon.png'); 
 
  if uservalidationdata(1)=='No Data'
-    
-    msgbox('Invalid User Authentications');
+   invalidmsg=msgbox('Invalid User Authentications', 'Error', 'error'); %Invalid User Authentications
  elseif uservalidationdata(1) ~='No Data'
     
-    usertype=uservalidationdata(8);
+        %Correct User Authentications
     
-     if usertype=='NormalUser'
-       close all;
-       NormalUserMainMenu  
-     elseif usertype=='AdminUser'
-        close all;
-        AdminMainMenu
-     else
-         msgbox('Problem with User Authentications. Please Try Again');
-     end
+       h=msgbox('Login Successful!', 'Success', 'custom', cdata, map, 'modal');  %Declaration of 'h' variable to assign and display message box with suitable size
+       set(h, 'position', [400 300 180 60]); %Set Message box Position and Size
+       uiwait(h);
+       close all;   %Close current GUI
+       NormalUserMainMenu  %Navigate to Main Menu GUI
+  else
+        %Message box to display for unexpected error in User Authentications
+         msgbox('Problem with User Authentications. Please Try Again', 'Error', 'error');
   end
+  
 
 end
 % --- Executes on button press in resetpushbutton.
@@ -187,15 +169,20 @@ function resetpushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-set(handles.txtusername, 'string', '');
-set(handles.txtpassword, 'string', '');
+%RESET BUTTON IMPLEMENTATION
+
+set(handles.txtusername, 'string', '');   %CLEAR USERNAME TEXT FIELD
+set(handles.txtpassword, 'string', '');   %CLEAR PASSWORD TEXT FIELD
 
 % --- Executes on button press in exitbutton.
 function exitbutton_Callback(hObject, eventdata, handles)
 % hObject    handle to exitbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-close all;
+
+%EXIT BUTTON IMPLEMENTATION
+
+close all;    %Close current GUI
 
 % --- Executes on button press in helpbutton.
 function helpbutton_Callback(hObject, eventdata, handles)
@@ -203,6 +190,9 @@ function helpbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+%HELP BUTTON IMPLEMENTATION
+
+%HELP NOTIFICATION
 helpdlg({'1. User Authentications are Case-Sensitive and make sure to provide them based on standards.' 
      '2. Make sure to change User Authentications every month to ensure high security.' 
      '3. User Accounts are two types which are Normal User and Admin User. Based on the provided user authentication, relevant user main menu will be opened.'

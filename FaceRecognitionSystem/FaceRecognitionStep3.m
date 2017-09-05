@@ -22,7 +22,7 @@ function varargout = FaceRecognitionStep3(varargin)
 
 % Edit the above text to modify the response to help FaceRecognitionStep3
 
-% Last Modified by GUIDE v2.5 04-Sep-2017 23:57:14
+% Last Modified by GUIDE v2.5 05-Sep-2017 20:22:13
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -132,11 +132,25 @@ Extracted_Face_Features=getappdata(0, 'Extracted_Face_Features');
                          FourtySixFeature; FourtySevenFeature; FourtyEightFeature; FourtyNineFeature; FiftyFeature;
                          FiftyOneFeature; FiftyTwoFeature; FiftyThreeFeature; FiftyFourFeature; FiftyFiveFeature; FiftySixFeature; FiftySevenFeature; FiftyEightFeature; FiftyNineFeature]);
   
+  set(handles.editOutput1, 'String', num2str(outputresult(1)));
+  set(handles.editOutput2, 'String', num2str(outputresult(2)));
+  set(handles.editOutput3, 'String', num2str(outputresult(3)));
+  set(handles.editOutput4, 'String', num2str(outputresult(4)));
+  set(handles.editOutput5, 'String', num2str(outputresult(5)));
+  set(handles.editOutput6, 'String', num2str(outputresult(6)));
+  set(handles.editOutput7, 'String', num2str(outputresult(7)));
+  set(handles.editOutput8, 'String', num2str(outputresult(8)));
+  set(handles.editOutput9, 'String', num2str(outputresult(9)));
+  set(handles.editOutput10, 'String', num2str(outputresult(10)));                   
+                     
+                                        
  roundresult=round(outputresult);
+ 
+   assignin('base', 'roundresult', roundresult);
+
  
  Class=0;
 for i=1:500
-        
     if roundresult(i,1)== 1
        Class=i;
     
@@ -148,25 +162,18 @@ if Class==0
         Class = knnsearch(roundresult,1);
 
 end
+
+%roundresultString=mat2str(roundresult);
+stringarray=string(roundresult);
+resultstrjoin=strjoin(stringarray);
+
+set(handles.editConcatenatedResult, 'String', resultstrjoin);
+
 setappdata(0, 'Class', Class);
-
- assignin('base', 'Class', Class);
- %assignin('base', 'outputresult', outputresult);
- %assignin('base', 'roundresult', roundresult);
+assignin('base', 'Class', Class);
  
+set(handles.editFinalResult, 'String', Class);
                      
-  set(handles.editOutput1, 'String', num2str(outputresult(1)));
-  set(handles.editOutput2, 'String', num2str(outputresult(2)));
-  set(handles.editOutput3, 'String', num2str(outputresult(3)));
-  set(handles.editOutput4, 'String', num2str(outputresult(4)));
-  set(handles.editOutput5, 'String', num2str(outputresult(5)));
-  set(handles.editOutput6, 'String', num2str(outputresult(6)));
-  set(handles.editOutput7, 'String', num2str(outputresult(7)));
-  set(handles.editOutput8, 'String', num2str(outputresult(8)));
-  set(handles.editOutput9, 'String', num2str(outputresult(9)));
-  set(handles.editOutput10, 'String', num2str(outputresult(10)));
-  
-
 % Update handles structure
 guidata(hObject, handles);
 
@@ -416,18 +423,18 @@ end
 
 
 
-function editAverage_Callback(hObject, eventdata, handles)
-% hObject    handle to editAverage (see GCBO)
+function editConcatenatedResult_Callback(hObject, eventdata, handles)
+% hObject    handle to editConcatenatedResult (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of editAverage as text
-%        str2double(get(hObject,'String')) returns contents of editAverage as a double
+% Hints: get(hObject,'String') returns contents of editConcatenatedResult as text
+%        str2double(get(hObject,'String')) returns contents of editConcatenatedResult as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function editAverage_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to editAverage (see GCBO)
+function editConcatenatedResult_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editConcatenatedResult (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 

@@ -58,8 +58,6 @@ function FaceRecognitionInput_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecognitionInput
 handles.output = hObject;
 
-
-
 % Update handles structure
 guidata(hObject, handles);
 

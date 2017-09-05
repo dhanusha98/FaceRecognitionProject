@@ -91,6 +91,7 @@ axes(handles.ResizedCropImage)
 imshow(CroppedImageResized);
 
    Extracted_Face_Features=extractLBPFeatures(CroppedImageResized);
+   
  
    setappdata(0, 'Extracted_Face_Features', Extracted_Face_Features);
  

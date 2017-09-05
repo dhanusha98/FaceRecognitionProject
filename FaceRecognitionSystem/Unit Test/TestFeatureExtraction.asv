@@ -14,9 +14,9 @@ classdef TestFeatureExtraction < matlab.unittest.TestCase
             
             Extracted_Face_Features=evalin('base','Extracted_Face_Features');
             
-             %[m,n] = size(Extracted_Face_Features);
+             [m,n] = size(Extracted_Face_Features);
             
-            if ~isempty(Extracted_Face_Features)
+            if length(Extracted_Face_Features)>0
                 
                 NonEmpty=Extracted_Face_Features;
                 
@@ -31,27 +31,5 @@ classdef TestFeatureExtraction < matlab.unittest.TestCase
            
     end
     
-    methods (Test)
-        
-       function testAllFeatureExtraction(testCase)
-        
-            %This test case is to check whether system extracts all 59
-            %features using LBP Algorithm for test image
-            
-            Extracted_Face_Features=evalin('base','Extracted_Face_Features');
-            
-            [m,n] = size(Extracted_Face_Features);
-            
-           if n==59
-               Successful=n;
-           end
-           
-           ExpectedSolution=Successful;
-           ActualSolution=n;
-           
-           testCase.verifyEqual(ActualSolution,ExpectedSolution);
-       end
-    
-    end
-
 end
+

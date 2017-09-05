@@ -9,7 +9,12 @@
 
  %k=transpose(error);
  
- Y=round(output1);
+ %Y=round(output1);
  %Y=transpose(Y);
  
  %target = full(ind2vec(Target));
+ 
+ 
+ 
+ 
+ 
