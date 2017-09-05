@@ -1,0 +1,15 @@
+
+
+%imgSetVector = imageSet('E:\FaceRecognitionProject\FaceRecognitionSystem\Training Set','recursive');
+
+%bag=bagOfFeatures(imgSetVector);
+
+%Input=transpose(Input);
+%Target=transpose(Target);
+
+ %k=transpose(error);
+ 
+ Y=round(output1);
+ %Y=transpose(Y);
+ 
+ %target = full(ind2vec(Target));

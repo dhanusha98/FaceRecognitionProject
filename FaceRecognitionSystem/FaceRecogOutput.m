@@ -22,7 +22,7 @@ function varargout = FaceRecogOutput(varargin)
 
 % Edit the above text to modify the response to help FaceRecogOutput
 
-% Last Modified by GUIDE v2.5 18-Aug-2017 23:19:51
+% Last Modified by GUIDE v2.5 02-Sep-2017 11:06:32
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -56,14 +56,13 @@ function FaceRecogOutput_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 
 %e=getappdata(0,'imgvalue');
-%axes(handles.axes1);
+%axes(handles.SuspectImageAxes);
 %imshow(e);
 
-finaloutputresult=getappdata(0, 'finaloutputresult');
-set(handles.editPersonID, 'String', num2str(finaloutputresult));
 
-%save('finaloutputresult.txt', 'finaloutputresult', '-ascii');
-save('finaloutputresult.txt', 'finaloutputresult', '-ascii');
+
+
+
 % Update handles structure
 guidata(hObject, handles);
 
@@ -629,7 +628,7 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 
 %img=getappdata(0,'imgvalue');
 
-%axes(handles.axes1)
+%axes(handles.SuspectImageAxes)
 %imshow(img);
 
    
@@ -694,8 +693,8 @@ function displayresultspushbutton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 %run('DataAccessLayer.m');
-finaloutputresult=getappdata(0, 'finaloutputresult');
-SuspectDataLayer(finaloutputresult)
+Class=getappdata(0, 'Class');
+SuspectDataLayer(Class)
 
 PersonID=evalin('base', 'PID');
 PersonName=evalin('base', 'PersonName');
@@ -711,7 +710,16 @@ Address=evalin('base', 'Address');
 Description=evalin('base', 'Description');
 Country=evalin('base', 'Country');
 CriminalHistory=evalin('base', 'CriminalHistory');
-FaceImage=evalin('base', 'FaceImage');
+
+%imageresult=finaloutputresult *0.1;
+strfinalresult=num2str(Class);
+variable1='E:\FaceRecognitionProject\FaceRecognitionSystem\FrontalFaceSet\';
+
+FaceImage=strcat(variable1,'A (',strfinalresult,')','.jpg');
+
+I=imread(FaceImage);
+axes(handles.SuspectImageAxes)
+imshow(I);
 
 set(handles.editPersonID, 'String', PersonID);
 set(handles.editPersonName, 'String', PersonName);
@@ -727,104 +735,3 @@ set(handles.editAddress, 'String', Address);
 set(handles.editDescription, 'String', Description);
 set(handles.editCountry, 'String', Country);
 set(handles.editCriminalHistory, 'String', CriminalHistory);
-
-TargetFolder = 'E:\FaceRecognitionProject\FaceRecognitionSystem\FaceImageResult';
-cd(TargetFolder);
-
-FImage=FaceImage{1,1};
-
- if ~isempty(FImage)
-     
-     [row col]=size(FImage);
-     
-     for i=1:row
-         targetfilename=['xyz.jpg'];
-         
-          %bytes = FaceImage{1,1}; 
-          fid = fopen(targetfilename,'w'); %Get a file desciptor for the target file 
-                    
-          if fid
-              fwrite(fid,FImage,'uint8'); %write the file
-              fclose(fid); %close fid or we will not be able to open the image till program exits.                     
-          end
-          
-         
-     end
-     
- end
-
-%FaceImage{1,1}=uint8(8000 * 1);
-%axes(handles.axes1)
-%imshow(FaceImage{1,1});
-
-%newimage = FaceImage{1};
-%A=newimage;
-
-%img=cell2mat(FaceImage);
-%imwrite(img, 'FaceImage.jpg');
-
-%FImage=FaceImage{1,1};
-%grayImage = uint8(FImage);
-%assignin('base', 'grayImage', grayImage);
-%axes(handles.axes1)
-%imshow(grayImage);
-
-
-%imshow(newimage);
-%assignin('base', 'newimage', newimage);
-%axes(handles.axes1)
-%imshow(newimage)
-%FImage=cell2struct(FaceImage, 'Image', 2);
-%set(handles.axes1)
-%imshow(FImage);
-
-%cellImage=cell2mat(FaceImage);
-%grayImage=reshape(cellImage, [1,1]);
-%set(handles.axes1)
-%%imshow(grayImage, []);
-
-
-%FImageResized=imresize(FImage, [128 128]);
-%assignin('base','FImage', FImageResized);
-
-%FImage=cell2mat(FaceImage);
-%set(handles.axes1)
-%imshow(FImage{1,1})
-
-
-
-
-%TargetFolder = 'E:\FaceRecognitionProject\FaceRecognitionSystem';
-%cd(TargetFolder);
-%try 
-        
-   % targetfilename = ['xyz.jpg'];
-    %bytes = FaceImage{1,1};
-    
-     %fid = fopen(targetfilename,'w'); %Get a file desciptor for the target file 
-                    
-     %if fid
-     %fwrite(fid,bytes,'uint8'); %write the file
-     %fclose(fid); %close fid or we will not be able to open the image till program exits.
-                    
-    % end
-    
-    
-%catch exception
-    
-    %rethrow(exception);
-%end
-
-
-
-
-
-
-
-
-
-
-
-
-
-

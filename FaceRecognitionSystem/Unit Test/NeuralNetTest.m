@@ -11,7 +11,7 @@ classdef NeuralNetTest <matlab.unittest.TestCase
             
             %This test case is to verify Neural Network capability to generate target output for certain inputs
             
-            nnetwork3=evalin('base','network3');
+            nnetwork3=evalin('base','NeuralNetwork');
             expectedSolution=286;
             outputresult=nnetwork3([126; 39.11521443; 53.46026562; 133; 78.4346862; 39.11521443; 53.46026562; 139]);
             ActSolution=round(outputresult);

@@ -136,7 +136,7 @@ psw=get(handles.txtpassword, 'string'); %Password TextBox value
 
 if isempty(usn) || isempty(psw)
     
-    msgbox('Please Provide Username and Password!');
+    msg=msgbox('Please Provide Username and Password!', 'Error', 'warn');
 
 else
     
@@ -162,24 +162,24 @@ uservalidationdata=string(evalin('base', 'uservalidation'));
     %msgbox('Invalid User Authentications');
   
 %end
+%loginsuccessicon=imread('loginsuccessicon.png');
+
+[cdata,map] = imread('loginsuccessicon.png'); 
 
  if uservalidationdata(1)=='No Data'
-    
-    msgbox('Invalid User Authentications');
+   invalidmsg=msgbox('Invalid User Authentications', 'Error', 'error');
  elseif uservalidationdata(1) ~='No Data'
     
-    usertype=uservalidationdata(8);
     
-     if usertype=='NormalUser'
+       h=msgbox('Login Successful!', 'Success', 'custom', cdata, map, 'modal');
+       set(h, 'position', [400 300 180 60]);
+       uiwait(h);
        close all;
        NormalUserMainMenu  
-     elseif usertype=='AdminUser'
-        close all;
-        AdminMainMenu
      else
-         msgbox('Problem with User Authentications. Please Try Again');
-     end
+         msgbox('Problem with User Authentications. Please Try Again', 'Error', 'error');
   end
+  
 
 end
 % --- Executes on button press in resetpushbutton.

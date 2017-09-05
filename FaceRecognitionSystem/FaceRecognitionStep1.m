@@ -55,7 +55,7 @@ function FaceRecognitionStep1_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecognitionStep1
 handles.output = hObject;
 
-evalin('base', 'load(''NeuralNetwork.mat'')');
+evalin('base', 'load(''net1.mat'')');
 
 pathname=getappdata(0, 'pathname');
 filename=getappdata(0, 'filename');
@@ -86,22 +86,14 @@ IFaceCropped=imcrop(ImgNoiseRemoval, [bboxFace(1) bboxFace(2) bboxFace(3) bboxFa
 axes(handles.CropImageAxes)
 imshow(IFaceCropped);
 
- Extracted_Face_Features=extractLBPFeatures(IFaceCropped);
+CroppedImageResized=imresize(IFaceCropped, [150,150]);
+axes(handles.ResizedCropImage)
+imshow(CroppedImageResized);
+
+   Extracted_Face_Features=extractLBPFeatures(CroppedImageResized);
  
- %assignin('base', 'Extracted_Face_Features', Extracted_Face_Features);
-   %setappdata(0, 'FaceHeight', FaceHeight);
-   %setappdata(0, 'Width_LeftEye', Width_LeftEye);
-   %setappdata(0, 'Width_RightEye', Width_RightEye);
-   %setappdata(0, 'Distance_LeftEye_Nose', Distance_LeftEye_Nose);
-   %setappdata(0, 'Distance_RightEye_Nose', Distance_RightEye_Nose);
-   %setappdata(0, 'Distance_Nose_Mouth', Distance_Nose_Mouth);
-   %setappdata(0, 'Distance_LeftEye_Mouth', Distance_LeftEye_Mouth);
-   %setappdata(0, 'Distance_RightEye_Mouth', Distance_RightEye_Mouth);
-   
    setappdata(0, 'Extracted_Face_Features', Extracted_Face_Features);
  
-
-
 % Update handles structure
 guidata(hObject, handles);
 
@@ -126,6 +118,13 @@ function step2pushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+
+h = waitbar(0,'Please wait...');
+steps = 1000;
+for step = 1:steps
+    % computations take place here
+    waitbar(step / steps)
+end
 close all;
 FaceRecognitionStep2
 
@@ -136,4 +135,4 @@ function backpushbutton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 close all;
-FaceRecongnitionInput
+FaceRecognitionInput

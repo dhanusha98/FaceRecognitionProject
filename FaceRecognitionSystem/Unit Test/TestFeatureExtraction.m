@@ -20,7 +20,7 @@ classdef TestFeatureExtraction < matlab.unittest.TestCase
                NonEmpty=FaceHeight;
             end
             
-            ExpectedSolution=[];
+            ExpectedSolution=NonEmpty;
             ActualSolution=FaceHeight;
             
             testCase.verifyEqual(ActualSolution,ExpectedSolution);

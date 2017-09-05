@@ -1,12 +1,4 @@
 
-%conn=database('FaceDBConnection', 'root', '');
-%userid=2;
-%useridstring=num2str(userid);
-%selectquery=['SELECT * FROM systemuser WHERE UserID=',useridstring];
-%data=select(conn,selectquery);
-%k=data.UserName;
-%function Suspects_Info=DataAccessLayer()
-
 function Suspects_Info=SuspectDataLayer(result)
 
 %This method is to retreive Suspects' Information based on generated final output from Neural Network of System
@@ -14,6 +6,7 @@ function Suspects_Info=SuspectDataLayer(result)
 finaloutputresult=num2str(result);
 
 conn=database('FaceDBConnection', 'root', '');
+setdbprefs('DataReturnFormat','cellarray')
 searchquery=['SELECT * FROM suspect WHERE UniqueClass=', '''' finaloutputresult ''''];
 curs=exec(conn,searchquery);
 curs=fetch(curs);

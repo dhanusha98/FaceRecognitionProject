@@ -1,0 +1,472 @@
+function varargout = FaceRecognitionStep3(varargin)
+% FACERECOGNITIONSTEP3 MATLAB code for FaceRecognitionStep3.fig
+%      FACERECOGNITIONSTEP3, by itself, creates a new FACERECOGNITIONSTEP3 or raises the existing
+%      singleton*.
+%
+%      H = FACERECOGNITIONSTEP3 returns the handle to a new FACERECOGNITIONSTEP3 or the handle to
+%      the existing singleton*.
+%
+%      FACERECOGNITIONSTEP3('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in FACERECOGNITIONSTEP3.M with the given input arguments.
+%
+%      FACERECOGNITIONSTEP3('Property','Value',...) creates a new FACERECOGNITIONSTEP3 or raises the
+%      existing singleton*.  Starting from the left, property value pairs are
+%      applied to the GUI before FaceRecognitionStep3_OpeningFcn gets called.  An
+%      unrecognized property name or invalid value makes property application
+%      stop.  All inputs are passed to FaceRecognitionStep3_OpeningFcn via varargin.
+%
+%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
+%      instance to run (singleton)".
+%
+% See also: GUIDE, GUIDATA, GUIHANDLES
+
+% Edit the above text to modify the response to help FaceRecognitionStep3
+
+% Last Modified by GUIDE v2.5 04-Sep-2017 23:57:14
+
+% Begin initialization code - DO NOT EDIT
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @FaceRecognitionStep3_OpeningFcn, ...
+                   'gui_OutputFcn',  @FaceRecognitionStep3_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+% End initialization code - DO NOT EDIT
+
+
+% --- Executes just before FaceRecognitionStep3 is made visible.
+function FaceRecognitionStep3_OpeningFcn(hObject, eventdata, handles, varargin)
+% This function has no output args, see OutputFcn.
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% varargin   command line arguments to FaceRecognitionStep3 (see VARARGIN)
+
+% Choose default command line output for FaceRecognitionStep3
+handles.output = hObject;
+
+Extracted_Face_Features=getappdata(0, 'Extracted_Face_Features');
+   
+   %Display Only Twenty Features out of Total '59' features extracted from face
+   
+   FirstFeature=Extracted_Face_Features(1);
+   SecondFeature=Extracted_Face_Features(2);
+   ThirdFeature=Extracted_Face_Features(3);
+   FourthFeature=Extracted_Face_Features(4);
+   FifthFeature=Extracted_Face_Features(5);
+   SixthFeature=Extracted_Face_Features(6);
+   SeventhFeature=Extracted_Face_Features(7);
+   EighthFeature=Extracted_Face_Features(8);
+   NinethFeature=Extracted_Face_Features(9);
+   TenthFeature=Extracted_Face_Features(10);
+   EleventhFeature=Extracted_Face_Features(11);
+   TwelvethFeature=Extracted_Face_Features(12);
+   ThirteenthFeature=Extracted_Face_Features(13);
+   FourteenthFeature=Extracted_Face_Features(14);
+   FifteenthFeature=Extracted_Face_Features(15);
+   SixteenthFeature=Extracted_Face_Features(16);
+   SeventeenthFeature=Extracted_Face_Features(17);
+   EighteenthFeature=Extracted_Face_Features(18);
+   NineteenthFeature=Extracted_Face_Features(19);
+   TwentiethFeature=Extracted_Face_Features(20);
+   TwentyOneFeature=Extracted_Face_Features(21);
+   TwentyTwoFeature=Extracted_Face_Features(22);
+   TwentyThreeFeature=Extracted_Face_Features(23);
+   TwentyFourFeature=Extracted_Face_Features(24);
+   TwentyFiveFeature=Extracted_Face_Features(25);
+   TwentySixFeature=Extracted_Face_Features(26);
+   TwentySevenFeature=Extracted_Face_Features(27);
+   TwentyEightFeature=Extracted_Face_Features(28);
+   TwentyNineFeature=Extracted_Face_Features(29);
+   ThirtyFeature=Extracted_Face_Features(30);
+   ThirtyOneFeature=Extracted_Face_Features(31);
+   ThirtyTwoFeature=Extracted_Face_Features(32);
+   ThirtyThreeFeature=Extracted_Face_Features(33);
+   ThirtyFourFeature=Extracted_Face_Features(34);
+   ThirtyFiveFeature=Extracted_Face_Features(35);
+   ThirtySixFeature=Extracted_Face_Features(36);
+   ThirtySevenFeature=Extracted_Face_Features(37);
+   ThirtyEightFeature=Extracted_Face_Features(38);
+   ThirtyNineFeature=Extracted_Face_Features(39);
+   FourtyFeature=Extracted_Face_Features(40);
+   FourtyOneFeature=Extracted_Face_Features(41);
+   FourtyTwoFeature=Extracted_Face_Features(42);
+   FourtyThreeFeature=Extracted_Face_Features(43);
+   FourtyFourFeature=Extracted_Face_Features(44);
+   FourtyFiveFeature=Extracted_Face_Features(45);
+   FourtySixFeature=Extracted_Face_Features(46);
+   FourtySevenFeature=Extracted_Face_Features(47);
+   FourtyEightFeature=Extracted_Face_Features(48);
+   FourtyNineFeature=Extracted_Face_Features(49);
+   FiftyFeature=Extracted_Face_Features(50);
+   FiftyOneFeature=Extracted_Face_Features(51);
+   FiftyTwoFeature=Extracted_Face_Features(52);
+   FiftyThreeFeature=Extracted_Face_Features(53);
+   FiftyFourFeature=Extracted_Face_Features(54);
+   FiftyFiveFeature=Extracted_Face_Features(55);
+   FiftySixFeature=Extracted_Face_Features(56);
+   FiftySevenFeature=Extracted_Face_Features(57);
+   FiftyEightFeature=Extracted_Face_Features(58);
+   FiftyNineFeature=Extracted_Face_Features(59);
+   
+   
+    nnetwork=evalin('base','net1');
+   
+  %outputresult=nnetwork([firstfeature; Distance_LeftEye_Mouth; Distance_LeftEye_Nose; Width_LeftEye; Distance_Nose_Mouth; Distance_RightEye_Mouth; Distance_RightEye_Nose; Width_RightEye]);
+  outputresult=nnetwork([FirstFeature; SecondFeature; ThirdFeature; FourthFeature; FifthFeature; SixthFeature; SeventhFeature; EighthFeature;
+                         NinethFeature; TenthFeature; EleventhFeature; TwelvethFeature; ThirteenthFeature; FourteenthFeature; FifteenthFeature 
+                         SixteenthFeature; SeventeenthFeature; EighteenthFeature; NineteenthFeature; TwentiethFeature; TwentyOneFeature; TwentyTwoFeature;
+                         TwentyThreeFeature; TwentyFourFeature; TwentyFiveFeature; TwentySixFeature; TwentySevenFeature; TwentyEightFeature; TwentyNineFeature;
+                         ThirtyFeature; ThirtyOneFeature; ThirtyTwoFeature; ThirtyThreeFeature; ThirtyFourFeature; ThirtyFiveFeature; ThirtySixFeature; ThirtySevenFeature;
+                         ThirtyEightFeature; ThirtyNineFeature; FourtyFeature; FourtyOneFeature; FourtyTwoFeature; FourtyThreeFeature; FourtyFourFeature; FourtyFiveFeature;
+                         FourtySixFeature; FourtySevenFeature; FourtyEightFeature; FourtyNineFeature; FiftyFeature;
+                         FiftyOneFeature; FiftyTwoFeature; FiftyThreeFeature; FiftyFourFeature; FiftyFiveFeature; FiftySixFeature; FiftySevenFeature; FiftyEightFeature; FiftyNineFeature]);
+  
+ roundresult=round(outputresult);
+ 
+ Class=0;
+for i=1:500
+        
+    if roundresult(i,1)== 1
+       Class=i;
+    
+    end
+end
+
+setappdata(0, 'Class', Class);
+
+ %assignin('base', 'Class', Class);
+ %assignin('base', 'outputresult', outputresult);
+ %assignin('base', 'roundresult', roundresult);
+ 
+                     
+  set(handles.editOutput1, 'String', num2str(outputresult(1)));
+  set(handles.editOutput2, 'String', num2str(outputresult(2)));
+  set(handles.editOutput3, 'String', num2str(outputresult(3)));
+  set(handles.editOutput4, 'String', num2str(outputresult(4)));
+  set(handles.editOutput5, 'String', num2str(outputresult(5)));
+  set(handles.editOutput6, 'String', num2str(outputresult(6)));
+  set(handles.editOutput7, 'String', num2str(outputresult(7)));
+  set(handles.editOutput8, 'String', num2str(outputresult(8)));
+  set(handles.editOutput9, 'String', num2str(outputresult(9)));
+  set(handles.editOutput10, 'String', num2str(outputresult(10)));
+  
+
+% Update handles structure
+guidata(hObject, handles);
+
+% UIWAIT makes FaceRecognitionStep3 wait for user response (see UIRESUME)
+% uiwait(handles.figure1);
+
+
+% --- Outputs from this function are returned to the command line.
+function varargout = FaceRecognitionStep3_OutputFcn(hObject, eventdata, handles) 
+% varargout  cell array for returning output args (see VARARGOUT);
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Get default command line output from handles structure
+varargout{1} = handles.output;
+
+
+
+function editOutput1_Callback(hObject, eventdata, handles)
+% hObject    handle to editOutput1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editOutput1 as text
+%        str2double(get(hObject,'String')) returns contents of editOutput1 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editOutput1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editOutput1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editOutput2_Callback(hObject, eventdata, handles)
+% hObject    handle to editOutput2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editOutput2 as text
+%        str2double(get(hObject,'String')) returns contents of editOutput2 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editOutput2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editOutput2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editOutput3_Callback(hObject, eventdata, handles)
+% hObject    handle to editOutput3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editOutput3 as text
+%        str2double(get(hObject,'String')) returns contents of editOutput3 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editOutput3_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editOutput3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editOutput4_Callback(hObject, eventdata, handles)
+% hObject    handle to editOutput4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editOutput4 as text
+%        str2double(get(hObject,'String')) returns contents of editOutput4 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editOutput4_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editOutput4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editOutput6_Callback(hObject, eventdata, handles)
+% hObject    handle to editOutput6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editOutput6 as text
+%        str2double(get(hObject,'String')) returns contents of editOutput6 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editOutput6_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editOutput6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editOutput7_Callback(hObject, eventdata, handles)
+% hObject    handle to editOutput7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editOutput7 as text
+%        str2double(get(hObject,'String')) returns contents of editOutput7 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editOutput7_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editOutput7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editOutput8_Callback(hObject, eventdata, handles)
+% hObject    handle to editOutput8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editOutput8 as text
+%        str2double(get(hObject,'String')) returns contents of editOutput8 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editOutput8_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editOutput8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editOutput9_Callback(hObject, eventdata, handles)
+% hObject    handle to editOutput9 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editOutput9 as text
+%        str2double(get(hObject,'String')) returns contents of editOutput9 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editOutput9_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editOutput9 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editOutput10_Callback(hObject, eventdata, handles)
+% hObject    handle to editOutput10 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editOutput10 as text
+%        str2double(get(hObject,'String')) returns contents of editOutput10 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editOutput10_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editOutput10 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editOutput5_Callback(hObject, eventdata, handles)
+% hObject    handle to editOutput5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editOutput5 as text
+%        str2double(get(hObject,'String')) returns contents of editOutput5 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editOutput5_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editOutput5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editAverage_Callback(hObject, eventdata, handles)
+% hObject    handle to editAverage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editAverage as text
+%        str2double(get(hObject,'String')) returns contents of editAverage as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editAverage_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editAverage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editFinalResult_Callback(hObject, eventdata, handles)
+% hObject    handle to editFinalResult (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editFinalResult as text
+%        str2double(get(hObject,'String')) returns contents of editFinalResult as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editFinalResult_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editFinalResult (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in btnviewresult.
+function btnviewresult_Callback(hObject, eventdata, handles)
+% hObject    handle to btnviewresult (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+h = waitbar(0,'Please wait...');
+steps = 1000;
+for step = 1:steps
+    % computations take place here
+    waitbar(step / steps)
+end
+close all;
+FaceRecogOutput

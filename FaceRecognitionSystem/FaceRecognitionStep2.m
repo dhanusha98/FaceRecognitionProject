@@ -179,24 +179,7 @@ handles.output = hObject;
    set(handles.FiftyEightFeature, 'String', num2str(FiftyEightFeature));
    set(handles.FiftyNineFeature, 'String', num2str(FiftyNineFeature));
    
-   nnetwork=evalin('base','NeuralNetwork');
-   
-  %outputresult=nnetwork([firstfeature; Distance_LeftEye_Mouth; Distance_LeftEye_Nose; Width_LeftEye; Distance_Nose_Mouth; Distance_RightEye_Mouth; Distance_RightEye_Nose; Width_RightEye]);
-  outputresult=nnetwork([FirstFeature; SecondFeature; ThirdFeature; FourthFeature; FifthFeature; SixthFeature; SeventhFeature; EighthFeature;
-                         NinethFeature; TenthFeature; EleventhFeature; TwelvethFeature; ThirteenthFeature; FourteenthFeature; FifteenthFeature 
-                         SixteenthFeature; SeventeenthFeature; EighteenthFeature; NineteenthFeature; TwentiethFeature; TwentyOneFeature; TwentyTwoFeature;
-                         TwentyThreeFeature; TwentyFourFeature; TwentyFiveFeature; TwentySixFeature; TwentySevenFeature; TwentyEightFeature; TwentyNineFeature;
-                         ThirtyFeature; ThirtyOneFeature; ThirtyTwoFeature; ThirtyThreeFeature; ThirtyFourFeature; ThirtyFiveFeature; ThirtySixFeature; ThirtySevenFeature;
-                         ThirtyEightFeature; ThirtyNineFeature; FourtyFeature; FourtyOneFeature; FourtyTwoFeature; FourtyThreeFeature; FourtyFourFeature; FourtyFiveFeature;
-                         FourtySixFeature; FourtySevenFeature; FourtyEightFeature; FourtyNineFeature; FiftyFeature;
-                         FiftyOneFeature; FiftyTwoFeature; FiftyThreeFeature; FiftyFourFeature; FiftyFiveFeature; FiftySixFeature; FiftySevenFeature; FiftyEightFeature; FiftyNineFeature]);
-  finaloutputresult=round(outputresult, -1);
-  set(handles.NeuralNetOutput, 'String', num2str(outputresult));
-  set(handles.FinalResult, 'String', num2str(finaloutputresult));
-
-   setappdata(0, 'finaloutputresult', finaloutputresult);
-   
-   
+  
 
 % Update handles structure
 guidata(hObject, handles);
@@ -452,8 +435,14 @@ function btnviewresults_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+h = waitbar(0,'Please wait...');
+steps = 1000;
+for step = 1:steps
+    % computations take place here
+    waitbar(step / steps)
+end
 close all;
-FaceRecogOutput
+FaceRecognitionStep3
 
 % --- Executes on button press in backpushbutton.
 function backpushbutton_Callback(hObject, eventdata, handles)

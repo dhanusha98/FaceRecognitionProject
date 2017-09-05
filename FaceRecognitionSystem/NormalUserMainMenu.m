@@ -108,5 +108,18 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-close all;
-UserLogin
+%choice = questdlg('User Confirmation','Do you want to Logout?','Yes','No');
+
+choice = questdlg('Do you want to Logout?', ...
+	     'Confirmation', ...
+	'Yes','No','Cancel','Cancel');
+
+switch choice
+    case 'Yes'
+        close all;
+        UserLogin
+    case 'No'
+        delete(choice);
+    case 'Cancel'
+         delete(choice);
+end

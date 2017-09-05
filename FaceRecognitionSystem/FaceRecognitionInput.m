@@ -89,6 +89,16 @@ img=imread([pathname,filename]);
 axes(handles.axes2)
 imshow(img);
 
+%These 'assignin' functions and 'Ax' variable are (Code line 92 -96) to implement Unit Testing only. 
+%Uncomment them when implement Unit Testing
+
+Ax=handles.axes2;
+assignin('base', 'Axes', Ax);      
+assignin('base', 'filename', filename);
+assignin('base', 'pathname', filename);
+assignin('base', 'img', filename);
+
+
 setappdata(0, 'pathname', pathname);
 setappdata(0, 'filename', filename);
 
@@ -98,6 +108,13 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+h = waitbar(0,'Please wait...');
+steps = 1000;
+for step = 1:steps
+    % computations take place here
+    waitbar(step / steps)
+end
 close all;
 FaceRecognitionStep1
 

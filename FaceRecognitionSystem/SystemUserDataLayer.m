@@ -3,7 +3,8 @@ function UserAuthenticationValidation=SystemUserDataLayer(username, password)
 %username='DhanushaPS';
 %password='19981212dps';
 connection=database('FaceDBConnection', 'root', '');
-searchquery=['SELECT * FROM systemuser WHERE UserName=', '''' username '''', 'AND Password=', '''' password ''''];
+setdbprefs('DataReturnFormat','cellarray')
+searchquery=['SELECT * FROM systemuser WHERE BINARY UserName=', '''' username '''', 'AND Password=', '''' password ''''];
 curs=exec(connection,searchquery);
 curs=fetch(curs);
 

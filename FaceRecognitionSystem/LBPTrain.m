@@ -14,20 +14,21 @@ for i=1:500
     
     for k=1:n
        im=jpgfiles(k).name;          
-       img=imread(fullfile(imgfolder, im));
+       ImgOriginal=imread(fullfile(imgfolder, im));
+       ImgGray=rgb2gray(ImgOriginal);
+       Imgresize=imresize(ImgGray, [480, 480]);
+       ImgNoiseRemoval=medfilt2(Imgresize);
 
-       
-       imgGray=rgb2gray(img);
-       imgresize=imresize(imgGray, [480, 480]);
-       ImgNoiseRemoval=medfilt2(imgresize);
        FaceDetector=vision.CascadeObjectDetector('FrontalFaceCART');
        bboxFace=step(FaceDetector, ImgNoiseRemoval);
        IFace=insertObjectAnnotation(ImgNoiseRemoval, 'rectangle', bboxFace, 'Face');
        IFaceCropped=imcrop(ImgNoiseRemoval, [bboxFace(1) bboxFace(2) bboxFace(3) bboxFace(4)]);
+       CroppedImageResized=imresize(IFaceCropped, [150,150]);
 
-       features=extractLBPFeatures(IFaceCropped);
+       Extracted_Face_Features=extractLBPFeatures(CroppedImageResized);
        
-       statsMatrix=[statsMatrix; features];
+       statsMatrix=[statsMatrix; Extracted_Face_Features];
+       
     end
     
 end
