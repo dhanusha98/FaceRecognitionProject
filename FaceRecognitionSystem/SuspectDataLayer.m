@@ -4,7 +4,6 @@ function Suspects_Info=SuspectDataLayer(result)
 %DATA ACCESS LAYER FILE TO RETRIEVE SUSPECTS' INFORMATION BASED ON
 %GENERATED FINAL OUTPUT FROM NEURAL NETWORK OF SYSTEM
 
-
 finaloutputresult=num2str(result);  %Convert Neural Network result to String format
 
 conn=database('FaceDBConnection', 'root', '');  %Build Connection for Database
