@@ -28,7 +28,7 @@ function varargout = FaceRecognitionInput(varargin)
 % Last Modified by GUIDE v2.5 19-Aug-2017 14:37:48
 
 % Begin initialization code - DO NOT EDIT
-gui_Singleton = 1;
+gui_Singleton = 1;   %APPLICATION OF SINGLETON DESIGN PATTERN
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
                    'gui_OpeningFcn', @FaceRecognitionInput_OpeningFcn, ...
@@ -82,23 +82,15 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future versioInputDataSetn of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-[filename,pathname]=uigetfile({'*.*', 'All files'});
-img=imread([pathname,filename]);
-axes(handles.axes2)
-imshow(img);
+%BROWSE BUTTON
 
-%These 'assignin' functions and 'Ax' variable are (Code line 92 -96) to implement Unit Testing only. 
-%Uncomment them when implement Unit Testing
+[filename,pathname]=uigetfile({'*.*', 'All files'});    %Code to get filename and pathname from Browse Location
+img=imread([pathname,filename]);   %Read Browsed Image using filename and pathname extracted
+axes(handles.axes2)                %Test Input Image display feature set to display browsed image
+imshow(img);                       %Show Input Test Image in Axes
 
-Ax=handles.axes2;
-assignin('base', 'Axes', Ax);      
-assignin('base', 'filename', filename);
-assignin('base', 'pathname', filename);
-assignin('base', 'img', filename);
-
-
-setappdata(0, 'pathname', pathname);
-setappdata(0, 'filename', filename);
+setappdata(0, 'pathname', pathname); %Set pathname of Input Image as appdata to make accessible in other GUI
+setappdata(0, 'filename', filename); %Set filename of Input Image as appdata to make accessible in other GUI
 
 
 % --- Executes on button press in pushbutton3.
@@ -107,26 +99,26 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-h = waitbar(0,'Please wait...');
-steps = 1000;
+h = waitbar(0,'Please wait...');  %Creation of Waitbar (Processing bar)
+steps = 1000;                      %Steps to run on Waitbar
 for step = 1:steps
     % computations take place here
-    waitbar(step / steps)
+    waitbar(step / steps)            %Waitbar processing logic creation
 end
-close all;
-FaceRecognitionStep1
+close all;                           %Close current GUI
+FaceRecognitionStep1                 %Navigate to Face Recognition Step 1
 
 % --- Executes on button press in pushbutton4.
 function pushbutton4_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton4 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-close all;
-NormalUserMainMenu
+close all; %Close Current GUI
+NormalUserMainMenu %Navigate to Main Menu
 
 % --- Executes on button press in helppushbutton.
 function helppushbutton_Callback(hObject, eventdata, handles)
 % hObject    handle to helppushbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-NormalUserHelpPanel
+NormalUserHelpPanel            %Navigate to Help Panel

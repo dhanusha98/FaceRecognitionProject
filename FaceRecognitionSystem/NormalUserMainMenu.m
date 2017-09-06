@@ -25,7 +25,7 @@ function varargout = NormalUserMainMenu(varargin)
 % Last Modified by GUIDE v2.5 18-Aug-2017 21:20:51
 
 % Begin initialization code - DO NOT EDIT
-gui_Singleton = 1;
+gui_Singleton = 1; %APPLICATION OF SINGLETON DESIGN PATTERN
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
                    'gui_OpeningFcn', @NormalUserMainMenu_OpeningFcn, ...
@@ -72,10 +72,10 @@ function varargout = NormalUserMainMenu_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
-axes(handles.axes1)
-imshow('facewallpaper.jpg');
-axes(handles.axes2)
-imshow('Help-Icon.jpg');
+axes(handles.axes1)         %Set Image to Image Displaying 'Axes 1'
+imshow('E:\FaceRecognitionProject\FaceRecognitionSystem\Wallpapers\facewallpaper.jpg'); %Image to be Display
+axes(handles.axes2)          %Set Image to Image Displaying 'Axes 2'
+imshow('E:\FaceRecognitionProject\FaceRecognitionSystem\Wallpapers\Help-icon.jpg');     %Image to be Display
 
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
@@ -83,8 +83,10 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-close all;
-FaceRecognitionInput
+%START FACE RECOGNITION PROCESS BUTTON
+
+close all;       %Close Current Interface
+FaceRecognitionInput    %Navigate to 'FaceRecognitionInput' Interface
 
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hObject, eventdata, handles)
@@ -99,8 +101,10 @@ function helppanelpushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-close all;
-NormalUserHelpPanel
+%HELP PANEL BUTTON
+
+close all;      %Close Current Interface
+NormalUserHelpPanel   %Navigate to Help Panel Interface
 
 % --- Executes on button press in pushbutton6.
 function pushbutton6_Callback(hObject, eventdata, handles)
@@ -108,18 +112,20 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-%choice = questdlg('User Confirmation','Do you want to Logout?','Yes','No');
+%LOGOUT BUTTON
 
 choice = questdlg('Do you want to Logout?', ...
 	     'Confirmation', ...
-	'Yes','No','Cancel','Cancel');
+	'Yes','No','Cancel','Cancel');   %Creation of Confirmation Dialog box
 
+%Switch Statement to implement transaction based on user response for
+%Confirmation Dialog box
 switch choice
     case 'Yes'
         close all;
-        UserLogin
+        UserLogin    %If user clicked 'Yes' for Confirmation Dialog box, Close Current Interface and Navigate to User Login
     case 'No'
-        delete(choice);
+        delete(choice); %If user clicked 'No', Close Confirmation Dialog Box
     case 'Cancel'
-         delete(choice);
+         delete(choice); %If user clicked 'No', Close Confirmation Dialog Box
 end

@@ -25,7 +25,7 @@ function varargout = FaceRecogOutput(varargin)
 % Last Modified by GUIDE v2.5 02-Sep-2017 11:06:32
 
 % Begin initialization code - DO NOT EDIT
-gui_Singleton = 1;
+gui_Singleton = 1;         %APPLICATION OF SINGLETON DESIGN PATTERN
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
                    'gui_OpeningFcn', @FaceRecogOutput_OpeningFcn, ...
@@ -54,14 +54,6 @@ function FaceRecogOutput_OpeningFcn(hObject, eventdata, handles, varargin)
 
 % Choose default command line output for FaceRecogOutput
 handles.output = hObject;
-
-%e=getappdata(0,'imgvalue');
-%axes(handles.SuspectImageAxes);
-%imshow(e);
-
-
-
-
 
 % Update handles structure
 guidata(hObject, handles);
@@ -101,8 +93,6 @@ function editPersonID_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 function editPersonName_Callback(hObject, eventdata, handles)
 % hObject    handle to editPersonName (see GCBO)
@@ -692,18 +682,20 @@ function displayresultspushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-%run('DataAccessLayer.m');
-Class=getappdata(0, 'Class');
-SuspectDataLayer(Class)
+%'DISPLAY RESULTS' BUTTON
 
-PersonID=evalin('base', 'PID');
-PersonName=evalin('base', 'PersonName');
-DOB=evalin('base', 'DOB');
-Sex=evalin('base', 'Sex');
-Height=evalin('base', 'Height');
-Weight=evalin('base', 'Weight');
+Class=getappdata(0, 'Class');     %Get Finalized Result (Class)
+SuspectDataLayer(Class)           %Parse Finalized Result/Unique Class of Person to Data Access Layer
+                                  %to retrieve recognized person details
+%GET LOADED RECOGNIZED PERSON EACH DATA TO HERE TO DISPLAY IN GUI
+PersonID=evalin('base', 'PID');       %Get PersonID from Workspace
+PersonName=evalin('base', 'PersonName'); %Get Person Name from Workspace
+DOB=evalin('base', 'DOB');               %Get Date of Birth from Workspace
+Sex=evalin('base', 'Sex');               %Get Gender Data from Workspace
+Height=evalin('base', 'Height');        
+Weight=evalin('base', 'Weight'); 
 EyeColor=evalin('base', 'EyeColor');
-Ethnicity=evalin('base', 'Ethnicity');
+Ethnicity=evalin('base', 'Ethnicity');           %GET ALL OTHER DETAILS OF RECOGNIZED PERSON
 Hair=evalin('base', 'Hair');
 ContactDetails=evalin('base', 'ContactDetails');
 Address=evalin('base', 'Address');
@@ -712,19 +704,19 @@ Country=evalin('base', 'Country');
 CriminalHistory=evalin('base', 'CriminalHistory');
 
 %imageresult=finaloutputresult *0.1;
-strfinalresult=num2str(Class);
+strfinalresult=num2str(Class);  %Convert Finalized Result to string format to retrieve person image from imageset
 variable1='E:\FaceRecognitionProject\FaceRecognitionSystem\FrontalFaceSet\';
 
-FaceImage=strcat(variable1,'A (',strfinalresult,')','.jpg');
+FaceImage=strcat(variable1,'A (',strfinalresult,')','.jpg');   %Retrieve Image of Recognized Person
 
-I=imread(FaceImage);
+I=imread(FaceImage);  %Read Image
 axes(handles.SuspectImageAxes)
-imshow(I);
+imshow(I);                         %Display Recognized Person Image on Axes
 
 set(handles.editPersonID, 'String', PersonID);
 set(handles.editPersonName, 'String', PersonName);
 set(handles.editDOB, 'String', DOB);
-set(handles.editSex, 'String', Sex);
+set(handles.editSex, 'String', Sex);                  %Display Person Details on textboxes
 set(handles.editHeight, 'String', Height);
 set(handles.editWeight, 'String', Weight);
 set(handles.editEyeColor, 'String', EyeColor);

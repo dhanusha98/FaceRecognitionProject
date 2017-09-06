@@ -55,7 +55,7 @@ function UserLogin_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for UserLogin
 handles.output = hObject;
 
-img=imread('facewallpaper.jpg');        %Image to be display in User Login
+img=imread('E:\FaceRecognitionProject\FaceRecognitionSystem\Wallpapers\facewallpaper.jpg');        %Image to be display in User Login
 imgresize=imresize(img, [640,640]);     %Resize Image to 640x640 dimension
 axes(handles.axes2)
 imshow(imgresize);                      %Display Images on Axes
@@ -143,7 +143,7 @@ else
 SystemUserDataLayer(usn, psw)  %Parse User Authentications for Data Access Layer file for verification from database
 uservalidationdata=string(evalin('base', 'uservalidation'));   %User Verification Results
 
-[cdata,map] = imread('loginsuccessicon.png'); 
+[cdata,map] = imread('E:\FaceRecognitionProject\FaceRecognitionSystem\Wallpapers\loginsuccessicon.png'); 
 
  if uservalidationdata(1)=='No Data'
    invalidmsg=msgbox('Invalid User Authentications', 'Error', 'error'); %Invalid User Authentications

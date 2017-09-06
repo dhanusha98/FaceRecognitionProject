@@ -25,7 +25,7 @@ function varargout = NormalUserHelpPanel(varargin)
 % Last Modified by GUIDE v2.5 19-Aug-2017 13:09:43
 
 % Begin initialization code - DO NOT EDIT
-gui_Singleton = 1;
+gui_Singleton = 1;   %APPLICATION OF SINGLETON DESIGN PATTERN
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
                    'gui_OpeningFcn', @NormalUserHelpPanel_OpeningFcn, ...
@@ -79,6 +79,9 @@ function loginhelp_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+%LOGIN PROCESS HELP BUTTON
+
+%Help Notification Dialog Box
  helpdlg({'1. User Authentications are Case-Sensitive and make sure to provide them based on standards.' 
      '2. Make sure to change User Authentications every month to ensure high security.' 
      '3. User Accounts are two types which are Normal User and Admin User. Based on the provided user authentication, relevant user main menu will be opened.'
@@ -90,6 +93,9 @@ function functionhelp_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+%FUNCTION SELECTION AND IMPLEMENTATION BUTTON
+
+%Help Notification Dialog Box
 helpdlg({'1. All the functions are provided in the Main Menu. Click relevant button to start function implementation.' 
          '2. Admin Users are only granted for some system operations and mainly for configurations.' 
          '3. Changing Code lines in m file related to each function cause to change system features totally in some circumstances.'
@@ -101,6 +107,9 @@ function facerecognitionhelp_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+%FACE RECOGNITION PROCESS BUTTON
+
+%Help Notification Dialog Box
 helpdlg({'1. User should provide image to start recognition process.' 
          '2. Provided Image must contain only single person.' 
          '3. Recognition based on facial measurements like Face Height, Width of Eyes, Distance from Eyes to Nose etc.'
@@ -114,6 +123,9 @@ function otherproblemspushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+%OTHER PROBLEMS BUTTON
+
+%Help Notification Dialog Box
 helpdlg({'If any problem occured in any operation implementation of system, please contact suppport team (Email: dhanusharoks@hotmail.com).' 
          }, 'Help');
 
@@ -124,5 +136,7 @@ function backpushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-close all;
-NormalUserMainMenu
+%BACK BUTTON
+
+close all; %Close Current Interface
+NormalUserMainMenu  %Navigate to Main Menu

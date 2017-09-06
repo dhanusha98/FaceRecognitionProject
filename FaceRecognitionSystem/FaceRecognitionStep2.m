@@ -25,7 +25,7 @@ function varargout = FaceRecognitionStep2(varargin)
 % Last Modified by GUIDE v2.5 26-Aug-2017 18:08:39
 
 % Begin initialization code - DO NOT EDIT
-gui_Singleton = 1;
+gui_Singleton = 1;    %APPLICATION OF SINGLETON DESIGN PATTERN
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
                    'gui_OpeningFcn', @FaceRecognitionStep2_OpeningFcn, ...
@@ -55,9 +55,9 @@ function FaceRecognitionStep2_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecognitionStep2
 handles.output = hObject;
 
-   Extracted_Face_Features=getappdata(0, 'Extracted_Face_Features');
-   
-   %Display Only Twenty Features out of Total '59' features extracted from face
+   Extracted_Face_Features=getappdata(0, 'Extracted_Face_Features');   %GET EXTRACTED FEATURE VALUES saved from Face Recognition Step 1 Interface
+      
+   %EXTRACTED 59 FEATURES FROM LBP FEATURE EXTRACTION TECHNIQUE
    
    FirstFeature=Extracted_Face_Features(1);
    SecondFeature=Extracted_Face_Features(2);
@@ -118,8 +118,10 @@ handles.output = hObject;
    FiftySevenFeature=Extracted_Face_Features(57);
    FiftyEightFeature=Extracted_Face_Features(58);
    FiftyNineFeature=Extracted_Face_Features(59);
+   
+   %Display Extracted Features on available textboxes
 
-   set(handles.FirstFeature, 'String', num2str(FirstFeature));
+   set(handles.FirstFeature, 'String', num2str(FirstFeature));     
    set(handles.SecondFeature, 'String', num2str(SecondFeature));
    set(handles.ThirdFeature, 'String', num2str(ThirdFeature));
    set(handles.FourthFeature, 'String', num2str(FourthFeature));
@@ -435,25 +437,22 @@ function btnviewresults_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-h = waitbar(0,'Please wait...');
-steps = 1000;
+h = waitbar(0,'Please wait...');  %Creation of Waitbar (Processing bar)
+steps = 1000;                     %Steps to run on Waitbar
 for step = 1:steps
     % computations take place here
-    waitbar(step / steps)
+    waitbar(step / steps)         %Waitbar processing logic creation
 end
-close all;
-FaceRecognitionStep3
+close all;                        %Close current GUI
+FaceRecognitionStep3              %Navigate to Face Recognition Step 3
 
 % --- Executes on button press in backpushbutton.
 function backpushbutton_Callback(hObject, eventdata, handles)
 % hObject    handle to backpushbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-close all;
-NormalUserMainMenu
-
-
+close all;            %Close current GUI
+NormalUserMainMenu    %Navigate to 'NormalUserMainMenu' GUI
 
 function NinethFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to NinethFeature (see GCBO)
@@ -462,7 +461,6 @@ function NinethFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of NinethFeature as text
 %        str2double(get(hObject,'String')) returns contents of NinethFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function NinethFeature_CreateFcn(hObject, eventdata, handles)
@@ -499,8 +497,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function FourteenthFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to FourteenthFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -521,8 +517,6 @@ function FourteenthFeature_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 function FifteenthFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to FifteenthFeature (see GCBO)
@@ -545,8 +539,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit25_Callback(hObject, eventdata, handles)
 % hObject    handle to edit25 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -568,8 +560,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit26_Callback(hObject, eventdata, handles)
 % hObject    handle to edit26 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -577,7 +567,6 @@ function edit26_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of edit26 as text
 %        str2double(get(hObject,'String')) returns contents of edit26 as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function edit26_CreateFcn(hObject, eventdata, handles)
@@ -590,8 +579,6 @@ function edit26_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 function TenthFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to TenthFeature (see GCBO)
@@ -614,8 +601,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function NineteenthFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to NineteenthFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -637,8 +622,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function TwentiethFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to TwentiethFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -646,7 +629,6 @@ function TwentiethFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of TwentiethFeature as text
 %        str2double(get(hObject,'String')) returns contents of TwentiethFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function TwentiethFeature_CreateFcn(hObject, eventdata, handles)
@@ -659,8 +641,6 @@ function TwentiethFeature_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 function TwentyOneFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to TwentyOneFeature (see GCBO)
@@ -683,8 +663,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit31_Callback(hObject, eventdata, handles)
 % hObject    handle to edit31 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -706,8 +684,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit32_Callback(hObject, eventdata, handles)
 % hObject    handle to edit32 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -715,7 +691,6 @@ function edit32_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of edit32 as text
 %        str2double(get(hObject,'String')) returns contents of edit32 as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function edit32_CreateFcn(hObject, eventdata, handles)
@@ -729,8 +704,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function TwentyFiveFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to TwentyFiveFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -738,7 +711,6 @@ function TwentyFiveFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of TwentyFiveFeature as text
 %        str2double(get(hObject,'String')) returns contents of TwentyFiveFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function TwentyFiveFeature_CreateFcn(hObject, eventdata, handles)
@@ -751,8 +723,6 @@ function TwentyFiveFeature_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 function TwentySixFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to TwentySixFeature (see GCBO)
@@ -798,8 +768,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit36_Callback(hObject, eventdata, handles)
 % hObject    handle to edit36 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -807,7 +775,6 @@ function edit36_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of edit36 as text
 %        str2double(get(hObject,'String')) returns contents of edit36 as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function edit36_CreateFcn(hObject, eventdata, handles)
@@ -820,8 +787,6 @@ function edit36_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 function edit37_Callback(hObject, eventdata, handles)
 % hObject    handle to edit37 (see GCBO)
@@ -1097,8 +1062,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function FourtyFourFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to FourtyFourFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1106,7 +1069,6 @@ function FourtyFourFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of FourtyFourFeature as text
 %        str2double(get(hObject,'String')) returns contents of FourtyFourFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function FourtyFourFeature_CreateFcn(hObject, eventdata, handles)
@@ -1119,8 +1081,6 @@ function FourtyFourFeature_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 function FourtyFiveFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to FourtyFiveFeature (see GCBO)
@@ -1143,8 +1103,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit51_Callback(hObject, eventdata, handles)
 % hObject    handle to edit51 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1166,8 +1124,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit52_Callback(hObject, eventdata, handles)
 % hObject    handle to edit52 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1175,7 +1131,6 @@ function edit52_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of edit52 as text
 %        str2double(get(hObject,'String')) returns contents of edit52 as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function edit52_CreateFcn(hObject, eventdata, handles)
@@ -1189,8 +1144,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function FourtyNineFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to FourtyNineFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1198,7 +1151,6 @@ function FourtyNineFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of FourtyNineFeature as text
 %        str2double(get(hObject,'String')) returns contents of FourtyNineFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function FourtyNineFeature_CreateFcn(hObject, eventdata, handles)
@@ -1212,8 +1164,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function FiftyFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to FiftyFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1221,7 +1171,6 @@ function FiftyFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of FiftyFeature as text
 %        str2double(get(hObject,'String')) returns contents of FiftyFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function FiftyFeature_CreateFcn(hObject, eventdata, handles)
@@ -1234,8 +1183,6 @@ function FiftyFeature_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 function FiftyOneFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to FiftyOneFeature (see GCBO)
@@ -1258,8 +1205,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit56_Callback(hObject, eventdata, handles)
 % hObject    handle to edit56 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1267,7 +1212,6 @@ function edit56_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of edit56 as text
 %        str2double(get(hObject,'String')) returns contents of edit56 as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function edit56_CreateFcn(hObject, eventdata, handles)
@@ -1281,8 +1225,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function edit57_Callback(hObject, eventdata, handles)
 % hObject    handle to edit57 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1290,7 +1232,6 @@ function edit57_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of edit57 as text
 %        str2double(get(hObject,'String')) returns contents of edit57 as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function edit57_CreateFcn(hObject, eventdata, handles)
@@ -1304,8 +1245,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function FiftyFiveFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to FiftyFiveFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1313,7 +1252,6 @@ function FiftyFiveFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of FiftyFiveFeature as text
 %        str2double(get(hObject,'String')) returns contents of FiftyFiveFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function FiftyFiveFeature_CreateFcn(hObject, eventdata, handles)
@@ -1327,8 +1265,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function FiftySixFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to FiftySixFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1336,7 +1272,6 @@ function FiftySixFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of FiftySixFeature as text
 %        str2double(get(hObject,'String')) returns contents of FiftySixFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function FiftySixFeature_CreateFcn(hObject, eventdata, handles)
@@ -1350,8 +1285,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function FiftySevenFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to FiftySevenFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1359,7 +1292,6 @@ function FiftySevenFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of FiftySevenFeature as text
 %        str2double(get(hObject,'String')) returns contents of FiftySevenFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function FiftySevenFeature_CreateFcn(hObject, eventdata, handles)
@@ -1373,8 +1305,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function EleventhFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to EleventhFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1382,7 +1312,6 @@ function EleventhFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of EleventhFeature as text
 %        str2double(get(hObject,'String')) returns contents of EleventhFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function EleventhFeature_CreateFcn(hObject, eventdata, handles)
@@ -1396,8 +1325,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function TwelvethFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to TwelvethFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1405,7 +1332,6 @@ function TwelvethFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of TwelvethFeature as text
 %        str2double(get(hObject,'String')) returns contents of TwelvethFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function TwelvethFeature_CreateFcn(hObject, eventdata, handles)
@@ -1419,8 +1345,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function SixteenthFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to SixteenthFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1428,7 +1352,6 @@ function SixteenthFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of SixteenthFeature as text
 %        str2double(get(hObject,'String')) returns contents of SixteenthFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function SixteenthFeature_CreateFcn(hObject, eventdata, handles)
@@ -1442,8 +1365,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function SeventeenthFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to SeventeenthFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1451,7 +1372,6 @@ function SeventeenthFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of SeventeenthFeature as text
 %        str2double(get(hObject,'String')) returns contents of SeventeenthFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function SeventeenthFeature_CreateFcn(hObject, eventdata, handles)
@@ -1465,8 +1385,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function EighteenthFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to EighteenthFeature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1474,7 +1392,6 @@ function EighteenthFeature_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of EighteenthFeature as text
 %        str2double(get(hObject,'String')) returns contents of EighteenthFeature as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function EighteenthFeature_CreateFcn(hObject, eventdata, handles)
@@ -1487,8 +1404,6 @@ function EighteenthFeature_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 function TwentyTwoFeature_Callback(hObject, eventdata, handles)
 % hObject    handle to TwentyTwoFeature (see GCBO)
