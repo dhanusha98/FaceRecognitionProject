@@ -58,6 +58,11 @@ function FaceRecognitionInput_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecognitionInput
 handles.output = hObject;
 
+filename=[]; %Variable to Set Filename of Image
+pathname=[]; %Variable to Set Pathname of Image
+setappdata(0, 'pathname', filename); %Set pathname to make accessible in other MATLAB GUI in this project
+setappdata(0, 'filename', pathname); %Set filename to make accessible in other MATLAB GUI in this project
+
 % Update handles structure
 guidata(hObject, handles);
 
@@ -99,6 +104,14 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+filename=getappdata(0, 'filename');
+pathname=getappdata(0, 'pathname');
+
+if isempty(filename) && isempty(pathname)
+    
+    msgbox('Please Browse Image!', 'Error', 'error');
+else
+    
 h = waitbar(0,'Please wait...');  %Creation of Waitbar (Processing bar)
 steps = 1000;                      %Steps to run on Waitbar
 for step = 1:steps
@@ -107,6 +120,9 @@ for step = 1:steps
 end
 close all;                           %Close current GUI
 FaceRecognitionStep1                 %Navigate to Face Recognition Step 1
+
+end
+
 
 % --- Executes on button press in pushbutton4.
 function pushbutton4_Callback(hObject, eventdata, handles)

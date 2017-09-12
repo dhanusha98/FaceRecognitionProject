@@ -82,6 +82,16 @@ IFace=insertObjectAnnotation(ImgNoiseRemoval, 'rectangle', bboxFace, 'Face');  %
 axes(handles.FaceDetectionAxes)
 imshow(IFace);                          %Display Detected Face on 'FaceDetectionAxes'
 
+if isempty(bboxFace)
+    
+     h=msgbox('Provided Image may not contain Person Face or unexpected error occured. Please Try Again', 'Error', 'error');  %Declaration of 'h' variable to assign and display message box with suitable size
+     set(h, 'position', [400 300 350 60]); %Set Message box Position and Size
+     uiwait(h);
+     close all;   %Close current GUI
+     NormalUserMainMenu  %Navigate to Main Menu GUI
+end
+
+
 IFaceCropped=imcrop(ImgNoiseRemoval, [bboxFace(1) bboxFace(2) bboxFace(3) bboxFace(4)]); %Crop Face from Image
 axes(handles.CropImageAxes)
 imshow(IFaceCropped);                   %Display Crop Image on 'CropImageAxes'

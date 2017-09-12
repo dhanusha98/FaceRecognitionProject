@@ -55,6 +55,17 @@ function FaceRecognitionStep1_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for FaceRecognitionStep1
 handles.output = hObject;
 
+ImgOriginal=[];
+ImgGray=[];
+Imgresize=[];
+ImgNoiseRemoval=[];
+FaceDetector=[];
+bboxFace=[];
+IFace=[];
+IFaceCropped=[];
+CroppedImageResized=[];
+Extracted_Face_Features=[];
+
 evalin('base', 'load(''net1.mat'')');    %Load Neural Network to Workspace
 
 pathname=getappdata(0, 'pathname');      %Get pathname of Input Test Image
@@ -82,18 +93,29 @@ IFace=insertObjectAnnotation(ImgNoiseRemoval, 'rectangle', bboxFace, 'Face');  %
 axes(handles.FaceDetectionAxes)
 imshow(IFace);                          %Display Detected Face on 'FaceDetectionAxes'
 
+if isempty(bboxFace)
+    
+     h=msgbox('Provided Image may not contain Person Face or unexpected error occured. Please Try Again', 'Error', 'error');  %Declaration of 'h' variable to assign and display message box with suitable size
+     set(h, 'position', [400 300 350 60]); %Set Message box Position and Size
+     uiwait(h);
+     close all;   %Close current GUI
+     NormalUserMainMenu  %Navigate to Main Menu GUI
+end
+
+
 IFaceCropped=imcrop(ImgNoiseRemoval, [bboxFace(1) bboxFace(2) bboxFace(3) bboxFace(4)]); %Crop Face from Image
 axes(handles.CropImageAxes)
-imshow(IFaceCropped);          %Display Crop Image on 'CropImageAxes'
+imshow(IFaceCropped);                   %Display Crop Image on 'CropImageAxes'
 
 CroppedImageResized=imresize(IFaceCropped, [150,150]);    %Resized Crop Image to 150x150 dimension
 axes(handles.ResizedCropImage)
-imshow(CroppedImageResized);    %Display Resized Crop Image on 'ResizedCropImage' Axes
+imshow(CroppedImageResized);            %Display Resized Crop Image on 'ResizedCropImage' Axes
 
-   Extracted_Face_Features=extractLBPFeatures(CroppedImageResized); 
+        %FEATURE EXTRACTION USING LOCAL BINARY PATTERN (LBP) FOR TEST IMAGE
+
+   Extracted_Face_Features=extractLBPFeatures(CroppedImageResized);  
    
- 
-   setappdata(0, 'Extracted_Face_Features', Extracted_Face_Features);
+   setappdata(0, 'Extracted_Face_Features', Extracted_Face_Features); %Make Extracted Features Accessible in Other Interfaces
  
 % Update handles structure
 guidata(hObject, handles);
@@ -118,22 +140,23 @@ function step2pushbutton_Callback(hObject, eventdata, handles)
 % hObject    handle to step2pushbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+%'GO TO STEP 2' BUTTON
 
-
-h = waitbar(0,'Please wait...');
-steps = 1000;
+h = waitbar(0,'Please wait...');  %Creation of Waitbar (Processing bar)
+steps = 1000;                     %Steps to run on Waitbar
 for step = 1:steps
     % computations take place here
-    waitbar(step / steps)
+    waitbar(step / steps)         %Waitbar processing logic creation
 end
-close all;
-FaceRecognitionStep2
+close all;                        %Close current GUI
+FaceRecognitionStep2              %Navigate to Face Recognition Step 1
 
 % --- Executes on button press in backpushbutton.
 function backpushbutton_Callback(hObject, eventdata, handles)
 % hObject    handle to backpushbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+%BACK BUTTON
 
-close all;
-FaceRecognitionInput
+close all;                       %Close Current GUI
+FaceRecognitionInput             %Navigate to 'FaceRecognitionInput' GUI
